@@ -1,0 +1,84 @@
+﻿@model sqjymodel.XinWen
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Areas/sqjy/Views/Shared/_LayoutPage1.cshtml";
+}
+@section Styles{
+
+    <link href="~/Areas/sqjy/css/NewList.css" rel="stylesheet" />
+}
+
+@section scripts{
+
+    <script src="~/Areas/sqjy/js/NewList.js"></script>
+}
+
+<div class="lujing">
+    <ol class="breadcrumb" style="margin:0;font-size:16px;">
+        <li><a href="Index">首页</a></li>
+        <li><a href="NewList">@Model._leixing</a></li>
+        <li class="active">@Model._biaoti</li>
+    </ol>
+</div>
+
+<div class="row" id="kcbf" style="background:#f4f4f4;padding-bottom:25px">
+    <div class="col-md-9 col-sm-9 " style="border:1px solid #dbdbdb;background:white;" id="kcbf2">
+        <div class="row">
+            <div class="col-md-12" style="text-align:center;border-bottom:1px solid #dbdbdb;font-size:24px;font-weight:700;padding:15px 0 5px 0">
+                @Model._biaoti
+
+                <div class="row" style="font-size:12px;font-weight:500;color:#787878;padding-top:10px;">
+
+                    <div class=" col-md-offset-8 col-md-2  col-xs-7">@Model._shijian2</div>
+                    <div class="col-md-2 col-xs-5">浏览量：@Model._liulanliang</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" style="padding-top:15px">
+
+            <div class="col-md-12 xwnr">
+                @Html.Raw(Model._leirong)
+
+            </div>
+            <script>
+                $(".xwnr img").parent().css("text-align", "center");
+            </script>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 col-sm-3">
+        <div class="row" style="border:1px solid #dbdbdb;padding:0" id="zxxw">
+            <div class="col-md-12" style="text-align:center;color:white;padding:10px 0 10px 0;font-size:18px;background:#d73240;">最新新闻</div>
+            @foreach (sqjymodel.XinWen item in ViewBag.xinwens)
+            {
+                <div class="row" style="padding:10px 0 10px 0;border-bottom:1px solid #dbdbdb;border-right:2px solid #dbdbdb;">
+                    <div class="col-md-6 col-sm-8 col-xs-8 xinwenbiaoti2"><a href="New?id=@item._id&cs=b" class="tooltip-test" data-toggle="tooltip" title="@item._biaoti">@item._biaoti</a></div>
+                    <div class="col-md-2 col-md-offset-4 col-sm-4 col-xs-4"><span class="shijian">@item._shijian</span></div>
+                </div>
+            }
+
+        </div>
+
+        <div class="row" style="border:1px solid #dbdbdb;padding:0px 10px 0 10px;margin-top:15px;background:#d73240;">
+            <div class="col-md-12" style="text-align:center;color:white;padding:10px 0 10px 0;font-size:18px">最新热门课程</div>
+
+        </div>
+        <div class="row" style="border-left:1px solid #dbdbdb;border-right:1px solid #dbdbdb;border-bottom:1px solid #dbdbdb;">
+            @foreach (sqjymodel.KeCheng item in ViewBag.kechengs)
+            {
+                <div class="col-md-7 col-sm-10 col-xs-6" style="padding-top:10px;text-align:center;">
+                    <img src="@item._kechengtupian" style="width:100%" />
+                    <p class="bee">
+                        <a href="kecheng?id=@item._id&cs=b" class="tooltip-test" data-toggle="tooltip" title="@item._kechengming">@item._kechengming</a>
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+</div>

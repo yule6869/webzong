@@ -1,0 +1,1388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C04DA2C8-FA7A-45AF-89E5-8AC06E7111C7}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>zongweb</RootNamespace>
+    <AssemblyName>zongweb</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\web\web\bin\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.5.1\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.5.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.5.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.5.1\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.5.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.5.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\cheping\chepingAreaRegistration.cs" />
+    <Compile Include="Areas\cheping\Controllers\jiaoshiController.cs" />
+    <Compile Include="Areas\cheping\Controllers\xueshengController.cs" />
+    <Compile Include="Areas\cheping\Models\chepingxitong.cs" />
+    <Compile Include="Areas\cheping\Models\pachong.cs" />
+    <Compile Include="Areas\cheping\Models\Weixinkaifa.cs" />
+    <Compile Include="Areas\sqjy\Controllers\adminController.cs" />
+    <Compile Include="Areas\sqjy\Controllers\TouristController.cs" />
+    <Compile Include="Areas\sqjy\js\ueditor\net\App_Code\Config.cs" />
+    <Compile Include="Areas\sqjy\js\ueditor\net\App_Code\ConfigHandler.cs" />
+    <Compile Include="Areas\sqjy\js\ueditor\net\App_Code\CrawlerHandler.cs" />
+    <Compile Include="Areas\sqjy\js\ueditor\net\App_Code\Handler.cs" />
+    <Compile Include="Areas\sqjy\js\ueditor\net\App_Code\ListFileHandler.cs" />
+    <Compile Include="Areas\sqjy\js\ueditor\net\App_Code\NotSupportedHandler.cs" />
+    <Compile Include="Areas\sqjy\js\ueditor\net\App_Code\PathFormater.cs" />
+    <Compile Include="Areas\sqjy\js\ueditor\net\App_Code\UploadHandler.cs" />
+    <Compile Include="Areas\sqjy\Models\sqjymodel.cs" />
+    <Compile Include="Areas\sqjy\sqjyAreaRegistration.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\cheping\css\framework7\app.css" />
+    <Content Include="Areas\cheping\css\framework7\css\app.css" />
+    <Content Include="Areas\cheping\css\framework7\fonts\MaterialIcons-Regular.svg" />
+    <Content Include="Areas\cheping\css\framework7\img\beach.jpg" />
+    <Content Include="Areas\cheping\css\framework7\img\f7-icon-square.png" />
+    <Content Include="Areas\cheping\css\framework7\img\f7-icon.png" />
+    <Content Include="Areas\cheping\css\framework7\img\lock.jpg" />
+    <Content Include="Areas\cheping\css\framework7\img\monkey.jpg" />
+    <Content Include="Areas\cheping\css\framework7\img\mountains.jpg" />
+    <Content Include="Areas\cheping\css\framework7\img\vi-icon.png" />
+    <Content Include="Areas\cheping\css\framework7\js\app.js" />
+    <Content Include="Areas\cheping\css\framework7\js\routes.js" />
+    <Content Include="Areas\cheping\css\login.css" />
+    <Content Include="Areas\cheping\images\btngrad.png" />
+    <Content Include="Areas\cheping\images\kechengtu\jisuanji.png" />
+    <Content Include="Areas\cheping\images\logo.png" />
+    <Content Include="Areas\cheping\images\logo4.png" />
+    <Content Include="Areas\cheping\images\password.png" />
+    <Content Include="Areas\cheping\images\patternbg.png" />
+    <Content Include="Areas\cheping\images\upimg\jiaoshitouxiang\oQ-Vp1maNHGpn0e_67LzuC-qX1uk.jpg" />
+    <Content Include="Areas\cheping\images\upimg\jiaoshitouxiang\oQ-Vp1r35YMSO8wfg0g6EQdLaBY4.jpg" />
+    <Content Include="Areas\cheping\images\upimg\jiaoshitouxiang\oQ-Vp1uJbzgGGU_Sq9CU2_Y06FX8.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1473062381129.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1475223163750.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1475224222214.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1475226672917.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1475227788353.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1475726386231.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1475726497238.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1475734014601.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1475740382395.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1475830355289.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1475833135853.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1476064444440.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1477272367206.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1480644989343.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1483427157117.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1483427264007.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1483435127824.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1483611252348.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1483671072680.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1483673335756.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1483674283218.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1483674889449.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1483674978886.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1483927785002.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1483951914852.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1489644461471.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1489648582549.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1489651340075.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1490756843065.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1490760876947.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1490867252938.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1490945796206.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493361338350.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493361388491.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493361429523.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493361495445.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493363121937.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493363177000.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493363218188.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493363274564.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493366583050.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493366700191.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493366753784.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493371139587.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493371196118.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493371300369.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493373784964.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493373841448.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493373888886.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493373939120.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493381050543.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493381091778.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493381145700.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1493381179450.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1498297141140.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1498533526964.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1498535657489.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1498536007002.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1498545002081.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1498545446634.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1498546854758.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1498554562705.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1498555213389.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1498556280125.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1499930594082.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1500260313567.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1500260480951.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1500260797608.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1500261375897.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1500261475935.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1500264435999.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1500688996849.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1500689259558.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1503038224876.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1503987040718.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512114218344.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512351641772.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512353009020.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512353471787.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512355569140.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512355624723.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512357254543.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512358183294.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512358815006.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512366132947.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512366240812.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512366277371.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512366330325.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512366360387.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512366383290.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512366411533.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512366440568.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512366467376.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512366509361.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512366538393.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512367006950.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512367035219.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512367065610.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512367111417.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512367138424.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512367159159.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512367186015.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512367211055.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512367232541.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512367265791.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512367292173.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512371717923.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512372182350.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512372248092.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512372286112.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512372367940.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1512372416079.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1514272368259.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1522030536614.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1523516542292.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1523613790865.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1525935620620.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1525935837839.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1525936791343.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1525937048022.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1525937472355.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1525938798658.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1525939216268.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1525939885289.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1526280399315.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1526280613386.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1529732710109.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1529992808653.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1529993317738.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1530166205946.jpg" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1530611356550.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531463020645.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531468844826.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531474908385.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531476495938.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531709805327.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531711213606.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531712830217.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531720954214.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531721100480.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531721810455.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531726003261.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531793944231.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531810483068.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531810540833.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531810747335.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531810904494.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531811059508.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531811166978.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531811239494.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531811323681.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531811430230.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531811810639.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531812333970.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531812412719.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531812485573.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531812670999.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531813033920.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531813141923.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531813217169.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531813824080.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531813959252.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531814021111.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531814411747.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531814471310.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531814526481.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531814562267.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531814605361.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531814635326.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531814782231.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531814909205.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531814983091.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531815092361.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531815148970.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531815244497.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531815381814.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531815579247.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531815657627.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531815712189.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531815885908.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531815953248.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531816018361.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531816294622.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531816367372.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531816471372.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531816588045.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531816654528.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531816764466.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531816806841.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531816856825.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531816953642.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531817012170.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531817061845.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531817166154.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531817222060.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531817280923.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531817695513.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531817742439.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531817792877.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531817841559.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531817938966.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531818009528.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531818158923.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531818238154.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531818287091.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531818337122.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531818421419.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531818541544.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531818815841.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531818870326.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531819142247.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531819211404.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531819410173.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531819524950.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531819578935.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531819633403.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531819675642.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531819738201.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531819886106.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531820017091.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531820471517.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531820526966.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531820582123.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531821023857.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531821252404.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531821306655.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531821396904.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531821581577.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531821650248.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531821725028.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531821781825.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531821844591.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531821910983.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531821973685.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531822160075.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531822321108.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531822385091.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531822465216.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531875647183.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531875731132.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531875838136.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531875891678.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531876103230.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531876149480.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531876229714.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531876281522.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531876335816.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531876393909.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531876423710.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531876487386.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531876950554.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531877065161.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531879090595.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531879134948.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531966413845.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531966482493.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1531990076801.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1532163787917.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1532337405631.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1532337501790.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1536558494979.png" />
+    <Content Include="Areas\cheping\images\upimg\timuimg\1540200921118.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1gCJj1L3CpSb1pf8_PEE0N8.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1gl-Jt1eHstuwVKfaIOX8DM.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1gr5fNGODJHPBw4lM8apaa0.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1gRWjHsVg7Snbre2WAn1hiU.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1gwo7DusfhFKijY0aKuiOII.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1h38XPO2tNt2T-8UOp96HTA.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1hKZc7zkOfl6QrZUg_Q3lhg.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1h_jzinIiTO4P3CFvmDQLaM.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1igaOGiVAR__sGs2_KCw2ZE.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1iiPUR5IKVWnf3TrYvz5pac.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1iOCL3mkOYK7lI452sfsfyQ.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1j2sCuaJ7oY4QUprjoYCoLg.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1jsRZeaTGrVBV0vAHqU5jNs.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1kcAPTiecfjEcRvSZeSACQQ.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1kTYXsq2d-ObWVZsbjQYg6A.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1lK0yThbo08nasb3MF-9ghw.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1lWd07TGKxmWYEUPyGSpfW4.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1m9hWAaqovOl7BU11IygRCs.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1maNHGpn0e_67LzuC-qX1uk.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1mWprw2LBILPpuV7bOd8puU.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1nhTbD_CcosZCX-ge-hJhzU.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1niJ2Eo2ixr5lC8RxWrbPvQ.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1npjyJawcPH2uTFHK5PgJv4.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1nplZjNtlEtYXP-Py2gAGfY.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1nRsxJcZ0ClW_hy4fKhga90.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1oKrzGOhy7ukq7gnrRAvn3o.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1omwVbtcTqyaiAwvO6Sksk4.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1pfswQhOl_EhrD2AxSjfuGY.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1pLZAV53kGdWzGRZXk752BE.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1pq391HdKqIPrcSB0eIRMhY.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1pROPAGjCaqYm73p3JFmQ6Q.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1q4sTcXttPlYf-OS3Gij0X8.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1qDLxzgejESoMwypkXHiSjA.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1qJz61GsQ95aR95n_Iy0fwc.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1qk4W2qm0OvMR5FV8GHeqAs.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1r35YMSO8wfg0g6EQdLaBY4.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1r5QBHiWdX4scBpzk4fMT7k.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1re3gSzlNh25dB7WjICoAIg.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1rSD3EJmd_ILUWxH2xA0EIE.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1rvkGJTcYNI7FJw_Rlev6Xw.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1rWpD71TMcaDffpyl-i7jEs.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1r_EgtVCsZtq4BH1XdvZ3HM.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1seIBkbJ-t4xnUdfmz2_VjM.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1sZlU4M-e9ZZ25Jjeva2y5k.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1t5i2xAFlq0L1-kJzXw5tuM.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1tGbdFwFyqvq4vEmes8IchQ.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1tYx70q8buG-WK3-AH87tsA.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1u3wy53YPvyzTBkQo8OJjBk.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1uaqDZ4c03Ie5wUZMAKE-GQ.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1uiy8ike7lWn52t-i12iEds.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1uJbzgGGU_Sq9CU2_Y06FX8.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1uqFu3DcFd1-4CukUvmhzs4.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1uSEDjcQ1Aw8S-QxJlsjECY.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1v0DYiIPvKhn9kdq4pOFNjs.jpg" />
+    <Content Include="Areas\cheping\images\upimg\xueshengtouxiang\oQ-Vp1voSNb-uL7tMf6ebRJzABIs.jpg" />
+    <Content Include="Areas\cheping\images\username.png" />
+    <Content Include="Areas\cheping\images\xsbeijing.png" />
+    <Content Include="Areas\cheping\js\jiaoshi\app1.js" />
+    <Content Include="Areas\cheping\js\jiaoshi\login.js" />
+    <Content Include="Areas\cheping\js\jiaoshi\routes1.js" />
+    <Content Include="Areas\cheping\js\xuesheng\app.js" />
+    <Content Include="Areas\cheping\js\xuesheng\bangding.js" />
+    <Content Include="Areas\cheping\js\xuesheng\routes.js" />
+    <Content Include="Areas\cheping\Views\jiaoshi\chakanqingkuang.cshtml" />
+    <Content Include="Areas\cheping\Views\jiaoshi\ckksqk.cshtml" />
+    <Content Include="Areas\cheping\Views\jiaoshi\jiaoshishouye.cshtml" />
+    <Content Include="Areas\cheping\Views\jiaoshi\tikuguanli.cshtml" />
+    <Content Include="Areas\cheping\Views\jiaoshi\tikuxiaoyan.cshtml" />
+    <Content Include="Areas\cheping\Views\web.config" />
+    <Content Include="Areas\cheping\Views\xuesheng\chakanshijuan.cshtml" />
+    <Content Include="Areas\cheping\Views\xuesheng\paiming.cshtml" />
+    <Content Include="Areas\cheping\Views\xuesheng\shijuan.cshtml" />
+    <Content Include="Areas\cheping\Views\xuesheng\shouye.cshtml" />
+    <Content Include="Areas\sqjy\css\KeCheng.css" />
+    <Content Include="Areas\sqjy\css\KeChengList.css" />
+    <Content Include="Areas\sqjy\css\muban2cs.css" />
+    <Content Include="Areas\sqjy\css\Index.css" />
+    <Content Include="Areas\sqjy\css\NewList.css" />
+    <Content Include="Areas\sqjy\img\0.jpg" />
+    <Content Include="Areas\sqjy\img\1.jpg" />
+    <Content Include="Areas\sqjy\img\2.jpg" />
+    <Content Include="Areas\sqjy\img\2.mp4" />
+    <Content Include="Areas\sqjy\img\2018021210592562_1003.png" />
+    <Content Include="Areas\sqjy\img\2018021211011341_han.jpg" />
+    <Content Include="Areas\sqjy\img\3.jpg" />
+    <Content Include="Areas\sqjy\img\4.jpg" />
+    <Content Include="Areas\sqjy\img\5.jpg" />
+    <Content Include="Areas\sqjy\img\6.jpg" />
+    <Content Include="Areas\sqjy\img\7.jpg" />
+    <Content Include="Areas\sqjy\img\8.jpg" />
+    <Content Include="Areas\sqjy\img\arrowl.png" />
+    <Content Include="Areas\sqjy\img\arrowr.png" />
+    <Content Include="Areas\sqjy\img\banner1.jpg" />
+    <Content Include="Areas\sqjy\img\banner2.jpg" />
+    <Content Include="Areas\sqjy\img\banner3.jpg" />
+    <Content Include="Areas\sqjy\img\banner4.jpg" />
+    <Content Include="Areas\sqjy\img\dian.png" />
+    <Content Include="Areas\sqjy\img\dian1.png" />
+    <Content Include="Areas\sqjy\img\erweima.jpg" />
+    <Content Include="Areas\sqjy\img\erweima1.jpg" />
+    <Content Include="Areas\sqjy\img\footlogo.jpg" />
+    <Content Include="Areas\sqjy\img\kcbtbj.jpg" />
+    <Content Include="Areas\sqjy\img\kechengtu.jpg" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018410142327.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018410162841.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018410163547.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018410164150.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018410164203.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018410164826.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018410165219.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018410165800.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018410201517.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411132247.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411132750.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411133455.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411133814.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411134056.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411134612.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411141719.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411142208.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411142349.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411142517.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411142719.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411142948.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411143243.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411143723.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411144707.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411145105.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411145333.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411145448.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411145923.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411152503.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411154048.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411154219.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411154352.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018411154529.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018418113857.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018418133002.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018418133320.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018418133712.png" />
+    <Content Include="Areas\sqjy\img\kechengtupian\2018418134356.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018410142336.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018410162853.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018410163602.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018410164231.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018410164837.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018410165232.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018410165832.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018410201534.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411132307.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411132802.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411133505.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411133828.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411134108.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411134627.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411141734.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411142228.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411142400.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411142527.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411142729.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411143002.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411143256.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411143734.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411144720.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411145117.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411145343.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411145458.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411145934.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411152518.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411154100.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411154234.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411154407.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018411154544.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018418113910.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018418133028.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018418133335.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018418133730.png" />
+    <Content Include="Areas\sqjy\img\kechengzhidingtu\2018418134416.png" />
+    <Content Include="Areas\sqjy\img\left.png" />
+    <Content Include="Areas\sqjy\img\left1.png" />
+    <Content Include="Areas\sqjy\img\logo.jpg" />
+    <Content Include="Areas\sqjy\img\logo1.jpg" />
+    <Content Include="Areas\sqjy\img\lunbotu1.jpg" />
+    <Content Include="Areas\sqjy\img\right.png" />
+    <Content Include="Areas\sqjy\img\right1.png" />
+    <Content Include="Areas\sqjy\img\shaoma.png" />
+    <Content Include="Areas\sqjy\img\shaoma2.png" />
+    <Content Include="Areas\sqjy\img\xinwen.jpg" />
+    <Content Include="Areas\sqjy\img\xinwen2.jpg" />
+    <Content Include="Areas\sqjy\img\xinwen3.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365344381598900004779823.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365345477528500003299271.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365345550672700001649222.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365345556418300001167062.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365345558855400009605740.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365345567236900006814258.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365346872133300001152036.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365346872152600001623085.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365346872174300009621551.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365346872188800001877447.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365346903871800005075303.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180205\6365346903872900003602721.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180206\6365352329413561499495132.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180206\6365352329445561499465414.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180206\6365352382388861497383202.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180206\6365352382438461499297116.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180206\6365352763014261496657877.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180206\6365352808832161498622834.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180206\6365352808839861496365405.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370758056610481881331.jpeg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370758076510482352380.jpeg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370758093210481066766.jpeg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370758106210488093417.jpeg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370758114510485835988.jpeg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370758129010481321129.jpeg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370758139710482292945.jpeg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370758147410489035515.jpeg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370758165310486277319.jpeg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370787636010484341798.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370787645710489611786.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370787648910485597694.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370787651510488826939.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180208\6365370787654110481583602.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180306\6365592692928300004425864.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180306\6365592692929100004425864.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180306\6365592692929200004425864.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180306\6365592692931700006182527.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180306\6365592692934000007939190.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180306\6365592692936600002168435.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672833598530581324730.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672867022230583643239.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672867026530588629147.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672867031430584615055.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672883622430584764465.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672883622730583291883.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672906556830587380404.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672906557730587380404.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672906559430581609650.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672925534530585458234.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672925536630583985652.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672925538130587214897.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672950637730581508789.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672950641530587967280.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672950645230589723943.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672978079530587275678.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672978083730583261586.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672978086430585018248.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672978087330585018248.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672978090430586774911.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672978092030581004156.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672978093830582760819.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365672998845830583158829.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365673021476630583814516.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365673021477630583814516.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365673021483430583029669.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365673021483530583029669.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365673099318730585421189.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365673099321630587177852.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365673099323530581407097.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365673099325530583163760.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180315\6365673099327230586393005.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180318\6365699183846730588246305.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180318\6365699183846930582475550.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180320\6365715443560430583908578.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180320\6365715443562030587137823.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180403\6365836104050732192991033.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180403\6365836115979932196312494.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180403\6365836115981132194839911.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180403\6365836115981632198069156.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180418\6365966228641226761824115.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180418\6365966231187052832975231.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180418\6365966231189856589433722.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180418\6365966237802165709569583.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180418\6365966239862893826539284.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180514\6366190863875051434348745.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180514\6366190863897168006576457.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180514\6366190863902972232562365.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180514\6366190863940301981747800.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180514\6366190863966123861434002.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180514\6366190863970026173190665.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180514\6366190863973929278176573.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180628\6366577162511502091406290.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180628\6366577166427711846878540.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180628\6366577170022707144694429.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180628\6366577172973347938142764.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180711\6366692499054763608993064.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180711\6366692500195236367041266.jpg" />
+    <Content Include="Areas\sqjy\img\xinwentupian\20180711\6366692503847251435986223.png" />
+    <Content Include="Areas\sqjy\img\xinwentupian\tidai.jpg" />
+    <Content Include="Areas\sqjy\img\zhong.png" />
+    <Content Include="Areas\sqjy\img\zhong1.png" />
+    <Content Include="Areas\sqjy\js\admin\login.js" />
+    <Content Include="Areas\sqjy\js\admin\tianjiaxinwen.js" />
+    <Content Include="Areas\sqjy\js\ckplayer\ckplayer.js" />
+    <Content Include="Areas\sqjy\js\ckplayer\ckplayer.min.js" />
+    <Content Include="Areas\sqjy\js\ckplayer\ckplayer.swf" />
+    <Content Include="Areas\sqjy\js\ckplayer\ckplayer.xml" />
+    <Content Include="Areas\sqjy\js\ckplayer\language.xml" />
+    <Content Include="Areas\sqjy\js\ckplayer\style.xml" />
+    <Content Include="Areas\sqjy\js\Index.js" />
+    <Content Include="Areas\sqjy\js\KeCheng.js" />
+    <Content Include="Areas\sqjy\js\KeChengList.js" />
+    <Content Include="Areas\sqjy\js\muban2js.js" />
+    <Content Include="Areas\sqjy\js\NewList.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\anchor\anchor.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\attachment.css" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\attachment.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\attachment.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_chm.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_default.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_doc.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_exe.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_jpg.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_mp3.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_mv.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_pdf.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_ppt.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_psd.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_rar.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_txt.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\fileTypeImages\icon_xls.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\images\alignicon.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\images\alignicon.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\images\bg.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\images\file-icons.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\images\file-icons.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\images\icons.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\images\icons.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\images\image.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\images\progress.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\images\success.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\attachment\images\success.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\background\background.css" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\background\background.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\background\background.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\background\images\bg.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\background\images\success.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\charts\chart.config.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\charts\charts.css" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\charts\charts.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\charts\charts.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\charts\images\charts0.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\charts\images\charts1.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\charts\images\charts2.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\charts\images\charts3.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\charts\images\charts4.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\charts\images\charts5.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\emotion.css" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\emotion.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\emotion.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\images\0.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\images\bface.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\images\cface.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\images\fface.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\images\jxface2.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\images\neweditor-tab-bg.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\images\tface.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\images\wface.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\emotion\images\yface.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\gmap\gmap.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\help\help.css" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\help\help.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\help\help.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\image\image.css" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\image\image.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\image\image.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\image\images\alignicon.jpg" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\image\images\bg.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\image\images\icons.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\image\images\icons.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\image\images\image.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\image\images\progress.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\image\images\success.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\image\images\success.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\insertframe\insertframe.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\internal.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\link\link.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\map\map.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\map\show.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\music\music.css" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\music\music.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\music\music.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\preview\preview.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\addimg.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\brush.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\delimg.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\delimgH.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\empty.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\emptyH.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\eraser.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\redo.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\redoH.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\scale.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\scaleH.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\size.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\undo.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\images\undoH.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\scrawl.css" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\scrawl.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\scrawl\scrawl.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\searchreplace\searchreplace.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\searchreplace\searchreplace.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\snapscreen\snapscreen.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\spechars\spechars.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\spechars\spechars.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\table\dragicon.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\table\edittable.css" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\table\edittable.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\table\edittable.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\table\edittd.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\table\edittip.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\template\config.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\template\images\bg.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\template\images\pre0.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\template\images\pre1.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\template\images\pre2.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\template\images\pre3.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\template\images\pre4.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\template\template.css" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\template\template.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\template\template.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\bg.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\center_focus.jpg" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\file-icons.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\file-icons.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\icons.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\icons.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\image.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\left_focus.jpg" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\none_focus.jpg" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\progress.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\right_focus.jpg" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\success.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\images\success.png" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\video.css" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\video.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\video\video.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\webapp\webapp.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\wordimage\fClipboard_ueditor.swf" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\wordimage\imageUploader.swf" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\wordimage\tangram.js" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\wordimage\wordimage.html" />
+    <Content Include="Areas\sqjy\js\ueditor\dialogs\wordimage\wordimage.js" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\en.js" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\addimage.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\alldeletebtnhoverskin.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\alldeletebtnupskin.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\background.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\button.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\copy.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\deletedisable.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\deleteenable.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\listbackground.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\localimage.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\music.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\rotateleftdisable.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\rotateleftenable.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\rotaterightdisable.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\rotaterightenable.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\en\images\upload.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\zh-cn\images\copy.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\zh-cn\images\localimage.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\zh-cn\images\music.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\zh-cn\images\upload.png" />
+    <Content Include="Areas\sqjy\js\ueditor\lang\zh-cn\zh-cn.js" />
+    <Content Include="Areas\sqjy\js\ueditor\net\Bin\Newtonsoft.Json.dll" />
+    <Content Include="Areas\sqjy\js\ueditor\net\Bin\Newtonsoft.Json.pdb" />
+    <Content Include="Areas\sqjy\js\ueditor\net\Bin\Newtonsoft.Json.xml" />
+    <Content Include="Areas\sqjy\js\ueditor\net\net.sln" />
+    <Content Include="Areas\sqjy\js\ueditor\net\upload\image\20180130\6365295181205300847751254.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\css\ueditor.css" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\css\ueditor.min.css" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\dialogbase.css" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\anchor.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\arrow.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\arrow_down.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\arrow_up.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\button-bg.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\cancelbutton.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\charts.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\cursor_h.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\cursor_h.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\cursor_v.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\cursor_v.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\dialog-title-bg.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\filescan.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\highlighted.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\icons-all.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\icons.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\icons.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\loaderror.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\loading.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\lock.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\neweditor-tab-bg.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\pagebreak.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\scale.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\sortable.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\spacer.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\sparator_v.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\table-cell-align.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\tangram-colorpicker.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\toolbar_bg.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\unhighlighted.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\upload.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\videologo.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\word.gif" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\default\images\wordpaste.png" />
+    <Content Include="Areas\sqjy\js\ueditor\themes\iframe.css" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\codemirror\codemirror.css" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\codemirror\codemirror.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\adapters\mootools-adapter.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\adapters\mootools-adapter.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\adapters\prototype-adapter.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\adapters\prototype-adapter.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\adapters\standalone-framework.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\adapters\standalone-framework.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\highcharts-more.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\highcharts-more.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\highcharts.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\highcharts.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\annotations.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\annotations.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\canvas-tools.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\canvas-tools.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\data.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\data.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\drilldown.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\drilldown.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\exporting.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\exporting.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\funnel.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\funnel.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\heatmap.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\heatmap.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\map.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\map.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\no-data-to-display.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\modules\no-data-to-display.src.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\themes\dark-blue.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\themes\dark-green.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\themes\gray.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\themes\grid.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\highcharts\themes\skies.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\jquery-1.10.2.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\jquery-1.10.2.min.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\snapscreen\UEditorSnapscreen.exe" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\SyntaxHighlighter\shCore.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\SyntaxHighlighter\shCoreDefault.css" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\video-js\font\vjs.svg" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\video-js\video-js.css" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\video-js\video-js.min.css" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\video-js\video-js.swf" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\video-js\video.dev.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\video-js\video.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\Uploader.swf" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\webuploader.css" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\webuploader.custom.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\webuploader.custom.min.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\webuploader.flashonly.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\webuploader.flashonly.min.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\webuploader.html5only.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\webuploader.html5only.min.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\webuploader.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\webuploader.min.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\webuploader.withoutimage.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\webuploader\webuploader.withoutimage.min.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\xss.min.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\zeroclipboard\ZeroClipboard.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\zeroclipboard\ZeroClipboard.min.js" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\zeroclipboard\ZeroClipboard.swf" />
+    <Content Include="Areas\sqjy\js\ueditor\ueditor.all.js" />
+    <Content Include="Areas\sqjy\js\ueditor\ueditor.all.min.js" />
+    <Content Include="Areas\sqjy\js\ueditor\ueditor.config.js" />
+    <Content Include="Areas\sqjy\js\ueditor\ueditor.parse.js" />
+    <Content Include="Areas\sqjy\js\ueditor\ueditor.parse.min.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\FromeWork7\css\framework7-lazy.css" />
+    <Content Include="Content\FromeWork7\css\framework7-lazy.min.css" />
+    <Content Include="Content\FromeWork7\css\framework7-lazy.rtl.css" />
+    <Content Include="Content\FromeWork7\css\framework7-lazy.rtl.min.css" />
+    <Content Include="Content\FromeWork7\css\framework7.css" />
+    <Content Include="Content\FromeWork7\css\framework7.ios.css" />
+    <Content Include="Content\FromeWork7\css\framework7.ios.min.css" />
+    <Content Include="Content\FromeWork7\css\framework7.md.css" />
+    <Content Include="Content\FromeWork7\css\framework7.md.min.css" />
+    <Content Include="Content\FromeWork7\css\framework7.min.css" />
+    <Content Include="Content\FromeWork7\css\framework7.rtl.css" />
+    <Content Include="Content\FromeWork7\css\framework7.rtl.ios.css" />
+    <Content Include="Content\FromeWork7\css\framework7.rtl.ios.min.css" />
+    <Content Include="Content\FromeWork7\css\framework7.rtl.md.css" />
+    <Content Include="Content\FromeWork7\css\framework7.rtl.md.min.css" />
+    <Content Include="Content\FromeWork7\css\framework7.rtl.min.css" />
+    <Content Include="Content\FromeWork7\js\framework7-lazy.js" />
+    <Content Include="Content\FromeWork7\js\framework7-lazy.min.js" />
+    <Content Include="Content\FromeWork7\js\framework7.js" />
+    <Content Include="Content\FromeWork7\js\framework7.min.js" />
+    <Content Include="Content\plugin\awesome-bootstrap-checkbox\awesome-bootstrap-checkbox.css" />
+    <Content Include="Content\plugin\bootstrap-select\bootstrap-select.css" />
+    <Content Include="Content\plugin\bootstrap-toggle\bootstrap-toggle.min.css" />
+    <Content Include="Content\plugin\bootstrap-wysihtml5\bootstrap-wysihtml5.css" />
+    <Content Include="Content\plugin\chartist\chartist.min.css" />
+    <Content Include="Content\plugin\datatables\datatables.css" />
+    <Content Include="Content\plugin\date-range-picker\daterangepicker-bs3.css" />
+    <Content Include="Content\plugin\fullcalendar\fullcalendar.css" />
+    <Content Include="Content\plugin\rickshaw\detail.css" />
+    <Content Include="Content\plugin\rickshaw\graph.css" />
+    <Content Include="Content\plugin\rickshaw\legend.css" />
+    <Content Include="Content\plugin\rickshaw\rickshaw.css" />
+    <Content Include="Content\plugin\summernote\summernote-bs3.css" />
+    <Content Include="Content\plugin\summernote\summernote.css" />
+    <Content Include="Content\plugin\sweet-alert\sweet-alert.css" />
+    <Content Include="Content\responsive.css" />
+    <Content Include="Content\root.css" />
+    <Content Include="Content\shortcuts.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\sm-extend.css" />
+    <Content Include="Content\sm.min.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="img\404.png" />
+    <Content Include="img\500.png" />
+    <Content Include="img\alerticons\anotherwarning.png" />
+    <Content Include="img\alerticons\autotime.png" />
+    <Content Include="img\alerticons\basic.png" />
+    <Content Include="img\alerticons\picture.png" />
+    <Content Include="img\alerticons\success.png" />
+    <Content Include="img\alerticons\textunder.png" />
+    <Content Include="img\alerticons\warning.png" />
+    <Content Include="img\datatables\sort_asc.png" />
+    <Content Include="img\datatables\sort_asc_disabled.png" />
+    <Content Include="img\datatables\sort_both.png" />
+    <Content Include="img\datatables\sort_desc.png" />
+    <Content Include="img\datatables\sort_desc_disabled.png" />
+    <Content Include="img\example-logo.png" />
+    <Content Include="img\example1.jpg" />
+    <Content Include="img\kode-icon.png" />
+    <Content Include="img\loading.gif" />
+    <Content Include="img\modalicons\large.png" />
+    <Content Include="img\modalicons\normal.png" />
+    <Content Include="img\modalicons\small.png" />
+    <Content Include="img\muorentou.jpg" />
+    <Content Include="img\profileimg.png" />
+    <Content Include="img\profileimg2.png" />
+    <Content Include="img\profileimg3.png" />
+    <Content Include="img\profileimg4.png" />
+    <Content Include="img\profileimg5.png" />
+    <Content Include="img\profileimg6.png" />
+    <Content Include="img\signature.png" />
+    <Content Include="img\socialbg.jpg" />
+    <Content Include="img\xsbeijing.png" />
+    <Content Include="Scripts\ajaxfileupload.js" />
+    <Content Include="Scripts\bootstrap-select\bootstrap-select.js" />
+    <Content Include="Scripts\bootstrap-toggle\bootstrap-toggle.min.js" />
+    <Content Include="Scripts\bootstrap-wysihtml5\bootstrap-wysihtml5.js" />
+    <Content Include="Scripts\bootstrap-wysihtml5\wysihtml5-0.3.0.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.bootstrap.css" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.bootstrap.min.css" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.bootstrap4.css" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.bootstrap4.min.css" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.dataTables.css" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.dataTables.min.css" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.foundation.css" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.foundation.min.css" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.jqueryui.css" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.jqueryui.min.css" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.semanticui.css" />
+    <Content Include="Scripts\Buttons-1.5.4\css\buttons.semanticui.min.css" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.bootstrap.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.bootstrap.min.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.bootstrap4.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.bootstrap4.min.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.colVis.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.colVis.min.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.flash.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.flash.min.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.foundation.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.foundation.min.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.html5.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.html5.min.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.jqueryui.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.jqueryui.min.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.print.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.print.min.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.semanticui.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\buttons.semanticui.min.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\dataTables.buttons.js" />
+    <Content Include="Scripts\Buttons-1.5.4\js\dataTables.buttons.min.js" />
+    <Content Include="Scripts\Buttons-1.5.4\swf\flashExport.swf" />
+    <Content Include="Scripts\ceshichajian.js" />
+    <Content Include="Scripts\datatables-1.10.15\images\Sorting icons.psd" />
+    <Content Include="Scripts\Buttons-1.5.4\css\common.scss" />
+    <Content Include="Scripts\Buttons-1.5.4\css\mixins.scss" />
+    <Content Include="Content\FromeWork7\js\framework7-lazy.min.js.map" />
+    <Content Include="Content\FromeWork7\js\framework7.min.js.map" />
+    <Content Include="Areas\sqjy\Views\web.config" />
+    <Content Include="Areas\sqjy\Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Areas\sqjy\Views\Tourist\Index.cshtml" />
+    <Content Include="Areas\sqjy\Views\Tourist\NewList.cshtml" />
+    <Content Include="Areas\sqjy\Views\Tourist\New.cshtml" />
+    <Content Include="Areas\sqjy\Views\Tourist\KeChengList.cshtml" />
+    <Content Include="Areas\sqjy\Views\Tourist\KeCheng.cshtml" />
+    <Content Include="Areas\sqjy\Views\admin\Login.cshtml" />
+    <Content Include="Areas\sqjy\Views\Shared\_LayoutPage2.cshtml" />
+    <Content Include="Areas\sqjy\Views\admin\xinwenguanli.cshtml" />
+    <Content Include="Areas\sqjy\Views\admin\tianjiaxinwen.cshtml" />
+    <Content Include="Areas\sqjy\js\ueditor\net\config.json" />
+    <Content Include="Areas\sqjy\js\ueditor\net\controller.ashx" />
+    <Content Include="Areas\sqjy\js\ueditor\net\README.md" />
+    <Content Include="Areas\sqjy\js\ueditor\net\upload\image\20180130\6365295198114300846818640.phpimgid=224" />
+    <Content Include="Areas\sqjy\js\ueditor\net\upload\image\20180130\6365295198117800848575303.phpimgid=225" />
+    <Content Include="Areas\sqjy\js\ueditor\net\upload\image\20180130\6365295198119100842804548.phpimgid=226" />
+    <Content Include="Areas\sqjy\js\ueditor\net\upload\image\20180130\6365295198120400841331966.phpimgid=227" />
+    <Content Include="Areas\sqjy\js\ueditor\net\Web.config" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\jquery-1.10.2.min.map" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\video-js\font\vjs.eot" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\video-js\font\vjs.ttf" />
+    <Content Include="Areas\sqjy\js\ueditor\third-party\video-js\font\vjs.woff" />
+    <Content Include="Areas\cheping\css\framework7\fonts\Framework7Icons-Regular.eot" />
+    <Content Include="Areas\cheping\css\framework7\fonts\Framework7Icons-Regular.ttf" />
+    <Content Include="Areas\cheping\css\framework7\fonts\Framework7Icons-Regular.woff" />
+    <Content Include="Areas\cheping\css\framework7\fonts\Framework7Icons-Regular.woff2" />
+    <Content Include="Areas\cheping\css\framework7\fonts\MaterialIcons-Regular.eot" />
+    <Content Include="Areas\cheping\css\framework7\fonts\MaterialIcons-Regular.ttf" />
+    <Content Include="Areas\cheping\css\framework7\fonts\MaterialIcons-Regular.woff" />
+    <Content Include="Areas\cheping\css\framework7\fonts\MaterialIcons-Regular.woff2" />
+    <Content Include="Areas\cheping\css\framework7\js\autocomplete-languages.json" />
+    <Content Include="Areas\cheping\Views\jiaoshi\bianji.cshtml" />
+    <Content Include="Areas\cheping\Views\jiaoshi\ceshi.cshtml" />
+    <Content Include="Areas\cheping\Views\jiaoshi\ceshi3.cshtml" />
+    <Content Include="Areas\cheping\Views\jiaoshi\fabukaoshi.cshtml" />
+    <Content Include="Areas\cheping\Views\jiaoshi\kaoshiguanli.cshtml" />
+    <Content Include="Areas\cheping\Views\xuesheng\bangding.cshtml" />
+    <Content Include="Areas\cheping\Views\jiaoshi\Login.cshtml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\chartist\chartist-plugin.js" />
+    <Content Include="Scripts\chartist\chartist.js" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.bootstrap.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.bootstrap.min.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.bootstrap4.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.foundation.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.foundation.min.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.jqueryui.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.jqueryui.min.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.material.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.material.min.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.semanticui.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.semanticui.min.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.uikit.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\dataTables.uikit.min.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\jquery.dataTables.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\jquery.dataTables.min.css" />
+    <Content Include="Scripts\datatables-1.10.15\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Scripts\datatables-1.10.15\images\favicon.ico" />
+    <Content Include="Scripts\datatables-1.10.15\images\sort_asc.png" />
+    <Content Include="Scripts\datatables-1.10.15\images\sort_asc_disabled.png" />
+    <Content Include="Scripts\datatables-1.10.15\images\sort_both.png" />
+    <Content Include="Scripts\datatables-1.10.15\images\sort_desc.png" />
+    <Content Include="Scripts\datatables-1.10.15\images\sort_desc_disabled.png" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.bootstrap.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.foundation.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.foundation.min.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.jqueryui.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.material.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.material.min.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.semanticui.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.semanticui.min.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.uikit.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\dataTables.uikit.min.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\jquery.dataTables.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\datatables-1.10.15\js\jquery.js" />
+    <Content Include="Scripts\datatables\datatables.min.js" />
+    <Content Include="Scripts\date-range-picker\daterangepicker.js" />
+    <Content Include="Scripts\easypiechart\easypiechart-plugin.js" />
+    <Content Include="Scripts\easypiechart\easypiechart.js" />
+    <Content Include="Scripts\echarts.common.min.js" />
+    <Content Include="Scripts\echarts.min.js" />
+    <Content Include="Scripts\flot-chart\flot-chart-pie.js" />
+    <Content Include="Scripts\flot-chart\flot-chart-plugin.js" />
+    <Content Include="Scripts\flot-chart\flot-chart-stack.js" />
+    <Content Include="Scripts\flot-chart\flot-chart-time.js" />
+    <Content Include="Scripts\flot-chart\flot-chart.js" />
+    <Content Include="Scripts\full-calendar\fullcalendar.js" />
+    <Content Include="Scripts\gmaps\gmaps-plugin.js" />
+    <Content Include="Scripts\gmaps\gmaps.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kode-alert\main.js" />
+    <Content Include="Scripts\layer.m\layer.m.js" />
+    <Content Include="Scripts\layer.m\need\layer.css" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment\moment.min.js" />
+    <Content Include="Scripts\mydatatable.js" />
+    <Content Include="Scripts\plugins.js" />
+    <Content Include="Scripts\rickshaw\d3.v3.js" />
+    <Content Include="Scripts\rickshaw\rickshaw-plugin.js" />
+    <Content Include="Scripts\rickshaw\rickshaw.js" />
+    <Content Include="Scripts\sm-extend.js" />
+    <Content Include="Scripts\sm.min.js" />
+    <Content Include="Scripts\sparkline\sparkline-plugin.js" />
+    <Content Include="Scripts\sparkline\sparkline.js" />
+    <Content Include="Scripts\summernote\summernote.min.js" />
+    <Content Include="Scripts\sweet-alert\sweet-alert.min.js" />
+    <Content Include="Scripts\zepto.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\cheping\js\admin\" />
+    <Folder Include="Areas\cheping\muban\" />
+    <Folder Include="Areas\cheping\upfile\admin\banji\" />
+    <Folder Include="Areas\cheping\upfile\admin\jxjh\" />
+    <Folder Include="Areas\cheping\upfile\admin\xuesheng\" />
+    <Folder Include="Areas\cheping\upfile\jiaoshi\yule\" />
+    <Folder Include="Areas\cheping\Views\admin\" />
+    <Folder Include="Areas\cheping\Views\Shared\" />
+    <Folder Include="Areas\cheping\xueshengshoujiduan\css\" />
+    <Folder Include="Areas\cheping\xueshengshoujiduan\fonts\" />
+    <Folder Include="Areas\cheping\xueshengshoujiduan\img\" />
+    <Folder Include="Areas\cheping\xueshengshoujiduan\js\" />
+    <Folder Include="Areas\cheping\xueshengshoujiduan\pages\" />
+    <Folder Include="cheping\" />
+    <Folder Include="Views\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50019</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50019/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

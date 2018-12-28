@@ -1,0 +1,201 @@
+﻿body{
+   font-family:microsoft yahei;
+}
+.guanyu{
+    
+    border-left:1.5px solid #dbdbdb;
+    border-right:1.5px solid #dbdbdb;
+    
+}
+.guanyu p{
+   
+    color:#424141;
+    font-weight:600;
+    font-size:14px;
+    text-indent: 2em;
+    line-height:3em;
+}
+.guanyu button{
+    border-radius: 10px;
+    height:40px;
+    background:#d73240;
+    border:1px solid white;
+    margin:20px 0 20px 0;
+    font-weight:500;
+    font-size:18px;
+    color:white;
+    padding:0 40px 0 40px;
+}
+.xinwen{
+    padding:10px 0 0 0;
+    
+}
+.zu{
+    
+}
+.zu div{
+    float:left;
+    border-top:1px solid #727272;
+    border-bottom:1px solid #727272;
+    border-left:1px solid #727272;
+    font-weight:600;
+    font-size:1.3em;
+    color:#727272;
+    padding-top:10px;
+    padding-bottom:10px;
+    text-align:center;
+    cursor:pointer;
+    
+}
+.zhong{
+    background:url(/img/zhong.png);
+    float:right;
+     width:14px;
+    height:14px;
+    margin:10px 5px 0 5px;
+    cursor:pointer;
+
+}
+.dian{
+    background:url(/img/dian.png);
+    float:right;
+    width:14px;
+    height:14px;
+    margin:10px 5px 0 5px;
+    cursor:pointer;
+}
+
+.tiao{
+    width:100%;
+    border-bottom:2px dashed #727272;
+    padding:0 0 10px 0;
+    margin:0 0 10px 0;
+    
+   
+}
+.tupianbiaoti{
+    text-decoration:none;
+    position: absolute;
+    width: 100%;
+    bottom: 24px;
+    left: 0px;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    background:rgba(0, 0, 0, 0.64);
+    padding:8px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.biaoti{
+    font-weight:600;
+    font-size:18px;
+    color:#727272;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    padding:0;
+    
+}
+.shijian{
+    font-weight:600;
+    font-size:18px;
+    color:#727272;
+    padding:0;
+    
+    
+}
+.jianjie{
+    font-family:'微软雅黑';
+    color:#727272;
+    font-weight:500;
+    font-size:14px;
+    text-indent: 2em;
+    line-height:2em;
+    width:100%;
+    padding:10px 0 0 0;
+    float:left;
+}
+.button2{
+    float:right;
+    margin-left:60%;
+    padding:5px 5px 5px 10px;
+    border:1px solid #d73240;
+    color:#d73240;
+    margin-bottom:15px;
+    cursor:pointer;
+}
+
+.kecheng{
+   padding-top:10px;
+}
+.kecheng a{
+    color:#d73240;
+}
+.kecheng a:link { text-decoration:none;}
+
+.kechengxia{
+    
+    border-bottom:2px solid #dbdbdb;
+     font-weight:600;
+    font-size:18px;
+    color:#d73240;
+    
+}
+
+.kechengbiaoti{
+    float:left;
+    width:100%;
+    margin-left:5px;
+    color:white;
+    cursor:pointer;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    padding:0;
+    
+}
+.kechengtubiao{
+    float:left;
+    color:white;
+    background:#fa4e4e;
+    padding:5px 0 5px 5px;
+    top:0;
+    
+}
+.kechengshuzhi{
+    float:left;
+    padding:1px 0 3px 3px;
+    color:white;
+    background:#fa4e4e;
+    font-weight:100;
+    
+}
+.han{
+    width:100%;
+    background:#fa4e4e;
+    height:49px;
+}
+
+#zz a:link { text-decoration:none;}
+
+.item{
+
+}
+    .item div:first-child a {
+        color: #d73240;
+    }
+    .item div:first-child div {
+        color: #d73240;
+    }
+
+.item2{
+
+}
+    .item2 p {
+        display: none;
+    }
+    .item2 .button2{
+        display:none;
+    }

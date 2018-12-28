@@ -1,0 +1,47 @@
+﻿
+.lujing {
+    background: #f4f4f4;
+}
+
+.breadcrumb li a {
+    color: #d73240;
+}
+
+.han {
+    width: 100%;
+    background: #fa4e4e;
+    height: 33px;
+}
+
+.kechengbiaoti {
+    float: left;
+    width: 100%;
+    margin-left: 5px;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 3px 0 0 0;
+}
+
+.kuangzhong {
+    -webkit-box-shadow: 0 0 10px #ff6a00;
+    -moz-box-shadow: 0 0 10px #ff6a00;
+    box-shadow: 0 0 10px #ff6a00;
+}
+
+.pagination li a {
+    color: #fa4e4e;
+}
+
+.beijing {
+    height: 101px;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    background: url(../img/kcbtbj.jpg);
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
+}

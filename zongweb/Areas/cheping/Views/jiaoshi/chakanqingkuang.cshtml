@@ -1,0 +1,128 @@
+﻿
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">{{kaoshiming}}</div>
+
+            </div>
+        </div>
+        <div class="page-content">
+
+            <div class="list media-list">
+                <ul id="shijuanlist">
+                    {{#each shijuans}}
+                    <li>
+                        <a href="#" class="item-link item-content" id="{{this.sjid}}">
+                            <div class="item-media"><img src="{{this.xstx}}" width="60" style="border-radius:70%" /></div>
+
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">{{this.xsxm}}</div>
+                                    <div class="item-after">
+                                        <div class="chip  {{#js_if "this.sjzt==='已提交'||this.sjzt==='已完成'"}}color-green{{else}}color-red{{/js_if}}">
+                                            <div class="chip-label">{{this.sjzt}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-subtitle">完成度：{{this.ztl}}/{{this.zs}}</div>
+                                <div class="item-text" style="margin-top:10px;">
+                                    <span data-progress="{{js "this.wcd*100"}}" class="progressbar {{#js_if "this.wcd*100>50"}}color-green{{else}}color-red{{/js_if}}"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {{/each}}
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</template>
+<script>
+
+    return {
+        data: function () {
+            return {
+                id:"",//考试id
+                kaoshiming:"",//考试名称
+                shijuans:[],//考试列表数据
+            }
+        },
+        on: {
+            pageInit: function (e, page) {
+                //var self = this;
+                //var app = self.$app;
+                //var $ = self.$$;
+                //$("#kaoshilist .item-subtitle").each(function () {
+                //    $(this).text(self.UnixToDate($(this).text(), false, 8));
+                //});
+
+
+            },
+
+            pageBeforeIn: function (e, page) {
+                var self = this;
+                var app = self.$app;
+                var $ = self.$$;
+                self.id = self.$route.params.id;
+                self.kaoshiming = self.$route.params.mingcheng;
+                app.dialog.preloader('加载中...');
+                app.request({
+                    type: 'POST',
+                    url: 'getshijuans?cs=min',
+                    data: { id:self.id },
+                    success: function (data) {
+                        app.dialog.close();
+                        if (data.reslut == "true") {
+                            self.shijuans = data.shujus;
+                            self.$setState();
+                            $("#shijuanlist li").each(function () {
+                                var du = $(this).find('span').data("progress");
+
+                                app.progressbar.set($(this).find('span'),du);
+                            });
+
+                        }
+                    },
+                    error: function () {
+                        app.dialog.close();
+                    },
+                    dataType: 'json',
+                    timeout: 20000
+                });
+
+
+            },
+        },
+        methods: {
+
+            UnixToDate: function (unixTime, isFull, timeZone) {
+                if (typeof (timeZone) == 'number') {
+                    unixTime = parseInt(unixTime) + parseInt(timeZone) * 60 * 60;
+                }
+                var time = new Date(unixTime * 1000);
+                var ymdhis = "";
+                ymdhis += time.getUTCFullYear() + "-";
+                ymdhis += (time.getUTCMonth() + 1) + "-";
+                ymdhis += time.getUTCDate();
+                if (isFull === true) {
+                    ymdhis += " " + time.getUTCHours() + ":";
+                    ymdhis += time.getUTCMinutes() + ":";
+                    ymdhis += time.getUTCSeconds();
+                }
+                return ymdhis;
+            },
+
+        }
+    }
+
+</script>

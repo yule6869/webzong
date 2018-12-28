@@ -1,0 +1,42 @@
+﻿
+.lujing {
+    background: #f4f4f4;
+}
+
+.breadcrumb li a {
+    color: #d73240;
+}
+
+.kechengbiaoti {
+    float: left;
+    width: 100%;
+    margin-left: 5px;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0;
+}
+
+.kechengtubiao {
+    float: left;
+    color: white;
+    background: #fa4e4e;
+    padding: 5px 0 5px 5px;
+    top: 0;
+}
+
+.kechengshuzhi {
+    float: left;
+    padding: 1px 0 3px 3px;
+    color: white;
+    background: #fa4e4e;
+    font-weight: 100;
+}
+
+.han {
+    width: 100%;
+    background: #fa4e4e;
+    height: 49px;
+}

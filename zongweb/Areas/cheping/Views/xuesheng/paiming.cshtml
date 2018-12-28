@@ -1,0 +1,99 @@
+﻿@model chepingxitong.KaoShi
+@{
+    Layout = null;
+}
+
+<div class="page" data-name="paiming">
+
+    <div class="navbar">
+        <div class="navbar-inner sliding">
+            <div class="left">
+                <a href="#" class="link back">
+                    <i class="icon icon-back"></i>
+                    <span class="ios-only">Back</span>
+                </a>
+            </div>
+            <div class="title">本次排名</div>
+            <div class="right" style="margin-right:10px;">
+                <a href="#" data-popover=".popover-menu" class="popover-open">
+                    <i class="f7-icons">forward_fill</i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="page-content">
+
+        <div class="block-title">
+            @Model._mingcheng
+        </div>
+        <div class="list">
+            <ul>
+                @{
+                    List<chepingxitong.ShiJuan> shijuans = Model.GetShiJuans();
+                    shijuans.Sort();
+                    int mingcimax = shijuans[shijuans.Count - 1]._mingci;
+                    for (int i = 1; i <= mingcimax; i++)
+                    {
+                        List<chepingxitong.ShiJuan> sjs = shijuans.FindAll(s => s._mingci == i);
+                        string text = "";
+                        if (i == int.Parse(ViewBag.mingci))
+                        {
+                            text = "style=\"background:#0094ff\"";
+                        }
+                        if (sjs.Count == 1)
+                        {
+                            chepingxitong.XueSheng xs = sjs[0].GetXueSheng();
+                            <li>
+                                <div class="item-content" @Html.Raw(text)>
+                                    <div class="item-media">
+                                        <img src="@xs._touxiang" style="width:30px;height:30px;border-radius:70%" />
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title">@xs._nicheng</div>
+                                        <div class="item-after"><span class="badge color-red">@i</span></div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media" @Html.Raw(text)>
+                                        @foreach (chepingxitong.ShiJuan item2 in sjs)
+                                        {
+                                            <img src="@item2.GetXueSheng()._touxiang" style="width:30px;height:30px;border-radius:70%;margin-right:10px;" />
+                                        }
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-after"><span class="badge color-red">@i</span></div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    }
+                }
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="popover popover-menu">
+        <div class="popover-angle"></div>
+        <div class="popover-inner">
+            <div class="list">
+                <ul>
+                    <li id="pyq">
+                        <a href="#" class="list-button item-link popover-close" onclick="fangfa()"><i class="material-icons">camera</i><span class="float-right">分享朋友圈</span></a>
+                    </li>
+                    <li id="py">
+                        <a href="#" class="list-button item-link popover-close"><i class="f7-icons">share</i><span class="float-right">分享给朋友</span></a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

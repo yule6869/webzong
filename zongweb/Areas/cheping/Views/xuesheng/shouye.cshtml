@@ -1,0 +1,303 @@
+﻿@model chepingxitong.XueSheng
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#2196f3">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>个人中心</title>
+    <link href="~/Content/FromeWork7/css/framework7.min.css" rel="stylesheet" />
+    <link href="~/Areas/cheping/css/framework7/css/app.css" rel="stylesheet" />
+    <link rel="icon" href="~/Areas/cheping/images/logo4.png" />
+    <style>
+        /* A bit of demo styles */
+        .swiper-container {
+        }
+
+        .swiper-slide {
+            background: #fff;
+        }
+
+            .swiper-slide span {
+                text-align: center;
+                display: block;
+                margin: 20px;
+                font-size: 21px;
+            }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="panel panel-left panel-cover">
+            <div class="page">
+                <div class="page-content">
+                    
+                    <div class="row" style="background-image:url(../../../Areas/cheping/images/xsbeijing.png);background-size:100% 100%;">
+                        <div class="col-100" style="text-align:center;margin-top:15px;">
+                            <img src="@Model._touxiang" class="img-circle" style="width:90px;border:3px solid white;border-radius:70%" />
+                            <p style="color:white;margin-top:5px;margin-bottom:5px;">@Model._xingming</p>
+                        </div>
+                        <div class="col-100" style="background:rgba(0, 0, 0, 0.4);">
+                            <div class="row">
+                                <div class="col-50" style="text-align:center;">
+                                    <p style="color:white;">班级</p>
+                                    <p style="color:white;">@Model.GetBanJiMing()</p>
+                                </div>
+                                <div class="col-50" style="text-align:center;">
+                                    <p style="color:white;">学号</p>
+                                    <p style="color:white;">@Model._xuehao</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-title">
+                        完成情况
+                    </div>
+                    <div id="main2" style="width:260px;height:260px;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="view view-main view-init ios-edges" data-url="/">
+            <div class="page" data-name="zzq">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left">
+
+                            <img src="~/Areas/cheping/images/logo.png" width="35" style="margin-left:10px;" />
+                        </div>
+                        <div class="title sliding">孜孜不倦护考</div>
+                        <div class="right">
+                            <a href="#" class="link icon-only panel-open" data-panel="left">
+                                <i class="icon f7-icons ios-only">menu</i>
+                                <i class="icon material-icons md-only">menu</i>
+                            </a>
+                        </div>
+                        <form data-search-container=".components-list" data-search-in="a" class="searchbar searchbar-expandable searchbar-components searchbar-init">
+                            <div class="searchbar-inner">
+                                <div class="searchbar-input-wrap">
+                                    <input type="search" placeholder="Search components" />
+                                    <i class="searchbar-icon"></i>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                                <span class="searchbar-disable-button">Cancel</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="card">
+                        <div class="card-header">成绩走势</div>
+                        <div class="card-content">
+                            <div id="main" style="width:100%;height:260px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="block-title">我的试卷</div>
+                    <div class="list media-list" id="shijuanlist">
+                        <ul>
+                            @{
+                                List<chepingxitong.ShiJuan> shijuans = Model.GetShiJuans();
+
+                            }
+                            @for (int x = 0; x < shijuans.Count; x++)
+                            {
+                                string str1, str2;
+                                if (shijuans[x]._zhuangtai == "开始答题")
+                                {
+                                    str1 = "/shijuan/";
+                                    str2 = "color-pink";
+                                }
+                                else if (shijuans[x]._zhuangtai == "继续答题")
+                                {
+                                    str1 = "/shijuan/";
+                                    str2 = "color-orange";
+                                }
+                                else if (shijuans[x]._zhuangtai == "已提交")
+                                {
+                                    str1 = "/chakanshijuan/";
+                                    str2 = "color-blue";
+                                }
+                                else if (shijuans[x]._zhuangtai == "已完成")
+                                {
+                                    str1 = "/chakanshijuan/";
+                                    str2 = "color-green";
+                                }
+                                else
+                                {
+                                    str1 = "/chakanshijuan/";
+                                    str2 = "color-red";
+                                }
+                                <li>
+                                    <a href="@str1?sjh=@shijuans[x]._id" class="item-link item-content" id="@shijuans[x]._id">
+                                        <div class="item-media"><img src="~/Areas/cheping/images/kechengtu/jisuanji.png" width="80" /></div>
+
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">@shijuans[x]._mingcheng</div>
+                                                <div class="item-after">
+                                                    <div class="chip @str2">
+                                                        <div class="chip-label">@shijuans[x]._zhuangtai</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-subtitle">@shijuans[x]._fabushijian</div>
+                                            @if (shijuans[x]._zhuangtai == "已完成" || shijuans[x]._zhuangtai == "未完成")
+                                            {
+                                                if (((double)shijuans[x]._zhengqueti / shijuans[x]._tiliang) < 0.6)
+                                                {
+                                                    <div class="item-text" style="color:red;">
+                                                        正确率：@(((double)shijuans[x]._zhengqueti / shijuans[x]._tiliang).ToString("P"))
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="item-text" style="color:green;">
+                                                        正确率：@(((double)shijuans[x]._zhengqueti / shijuans[x]._tiliang).ToString("P"))
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        @{
+
+            string text1 = "[";
+            string text2 = "[";
+            int i = 1;
+            for(int j= shijuans.Count-1; j>=0;j--)
+            {
+                if (shijuans[j]._zhuangtai == "已完成" || shijuans[j]._zhuangtai == "未完成")
+                {
+                    text1 = text1 + "[" + i + "," + ((double)shijuans[j]._zhengqueti/shijuans[j]._tiliang) * 100 + "],";
+                    text2 = text2 + "[" + i + "," + shijuans[j]._paimingzhishu * 100 + "],";
+                    i++;
+                }
+            }
+            if (text1.Length > 1)
+            {
+                text1 = text1.Substring(0, text1.Length - 1) + "]";
+            }
+            else
+            {
+                text1 = text1 + "]";
+            }
+
+            if (text2.Length > 1)
+            {
+                text2 = text2.Substring(0, text2.Length - 1) + "]";
+            }
+            else
+            {
+                text2 = text2 + "]";
+            }
+        }
+        var option = {
+
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['正确率', '排名指数']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value'
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '正确率',
+                    type: 'line',
+                    showSymbol: false,
+                    hoverAnimation: false,
+                    data: @text1
+                },
+                {
+                    name: '排名指数',
+                    type: 'line',
+                    showSymbol: false,
+                    hoverAnimation: false,
+                    data: @text2
+                }
+
+            ]
+        };
+        var option2 = {
+
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+
+                top: 'top',
+                data: ['正确', '错误', '未做']
+            },
+            series: [
+                {
+                    name: '完成情况',
+                    type: 'pie',
+                    radius: '80%',
+                    center: ['50%', '60%'],
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'inside',
+                        }
+                    },
+                    data: [
+                        { value: @Model._zhengqueliang, name: '正确', itemStyle: { color: 'green' } },
+                        { value: @(Model._zuotiliang-Model._zhengqueliang), name: '错误', itemStyle: { color: 'red' } },
+                        { value: @(ViewBag.zongtiliang - Model._zuotiliang), name: '未做', itemStyle: { color: 'blue' } },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+
+                }
+            ]
+        };
+
+    </script>
+    <script src="~/Scripts/echarts.min.js"></script>
+    <script src="~/Content/FromeWork7/js/framework7.min.js"></script>
+    <script src="~/Areas/cheping/js/xuesheng/routes.js"></script>
+    <script src="~/Areas/cheping/js/xuesheng/app.js"></script>
+
+</body>
+</html>

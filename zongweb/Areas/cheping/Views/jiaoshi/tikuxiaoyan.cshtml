@@ -1,0 +1,1166 @@
+﻿
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">题库效验</div>
+                <div class="right">
+                    <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-components">
+                        <i class="icon f7-icons ios-only">search_strong</i>
+                        <i class="icon material-icons md-only">search</i>
+                    </a>
+                </div>
+                <div class="subnavbar">
+                        <p style="font-size:12px;padding-left:10px;width:50px;">章节：</p>
+                        <div class="list no-hairlines-md" style="width:100%;">
+                            <ul>
+                                <li>
+                                    <div class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-input-wrap">
+                                                <input type="text" placeholder="章节" readonly="readonly" id="demo-picker-dependent" style="font-size:12px;color:white;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                   
+                    
+                </div>
+ 
+            </div>
+        </div>
+        
+        <div data-infinite-distance="50" class="page-content infinite-scroll-content" @@infinite="loadMore">
+
+            <div class="list media-list">
+                <ul id="shuju">
+                    {{#each timus}}
+                    <li>
+                        <a href="#" class="item-link item-content" @@click="dianjitimu({{this._id}})">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title" data-id="{{this._id}}">id：{{this._id}}</div>
+                                    <div class="item-after">编辑</div>
+                                </div>
+                                <div class="item-subtitle">{{this.leibie}}</div>
+                                <div class="item-text">{{js 'this._timu.replace(new RegExp("<","g"),"&lt")'}}</div>
+                            </div>
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{#if has}}
+            <div class="preloader infinite-scroll-preloader"></div>
+            {{/if}}
+        </div>
+
+        <div class="popup demo-popup">
+            <div class="page">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="title">编辑题目</div>
+                        <div class="right">
+                            <a href="#" class="link popup-close">返回</a>
+                            <a href="#" class="link" @@click="tongguo()">通过</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="block-header" style="margin-top:15px;">题目来源</div>
+                    <div class="block block-strong" style="margin-bottom:5px;">
+                        {{dqtm._laiyuan}}
+                    </div>
+                    {{#js_if "this.dqtm._tiganid!=''"}}
+                    <div class="block-header" style="margin-top:15px;">题干</div>
+                    <div class="block block-strong" style="margin-bottom:5px;" @@click="dakaib('题干')">
+                        {{dqtm._tigan._tigan}}
+                    </div>
+                    {{/js_if}}
+                    <div class="block-header" style="margin-top:15px;">题目</div>
+                    <div class="block block-strong" style="margin-bottom:5px;" @@click="dakaib('题目')">
+                        {{dqtm._timu}}
+                    </div>
+                    <div class="block-header" style="margin-top:15px;">选项</div>
+                    <div class="block block-strong" style="margin-bottom:5px;">
+                        {{#each dqtm._xuanxiangs}}
+                        <p @@click="dakaib({{@@index}})">{{this._xuanxiang}}</p>
+                        {{/each}}
+                    </div>
+                    <div class="block-header" style="margin-top:15px;">答案</div>
+                    <div class="block block-strong" style="margin-bottom:5px;" id="daan-picker">
+                        {{#each dqtm._xuanxiangs}}
+                        {{#js_if "this._IsTrue"}}
+                        {{this._xuanxiang}}
+                        {{/js_if}}
+                        {{/each}}
+                    </div>
+                    <div class="block-header" style="margin-top:15px;">解析</div>
+                    <div class="block block-strong" style="margin-bottom:5px;" @@click="dakaib('解析')">
+                        {{dqtm._jiexi}}
+                    </div>
+                    <div class="block-header" style="margin-top:15px;">章节</div>
+                    <div class="block block-strong" style="margin-bottom:5px;" id="zhangjie-picker">
+                        {{dqzhang._mingcheng}},{{dqjie._mingcheng}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup bianji-popup">
+            <div class="page">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="title">{{bianjileibie}}</div>
+                        <div class="right">
+                            <a href="#" class="link" @@click="quxiao">取消</a>
+                            <a href="#" class="link" id="xiugaiqueren2">确定</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-content" style="text-align:center;">
+                    <div class="toolbarbox">
+                        <div id="gongjulan">
+                            <i class="material-icons float-left" style="margin-right:10px;margin-left:10px;" id="btn1">vertical_align_bottom</i>
+                            <i class="material-icons float-left" style="margin-right:10px;" id="btn2">vertical_align_top</i>
+                        </div>
+                        <i class="material-icons float-left" id="btn3">all_inclusive</i>
+                    </div>
+                    <iframe contenteditable="true" style="border:1px solid rgba(204, 204, 204, 0.6);width:90%;height:300px;" id="bianjikuang"></iframe>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="popup teshufuhao-popup">
+            <div class="page">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="title">特殊符号</div>
+                        <div class="right">
+                            <a href="#" class="link" @@click="quxiao3">取消</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="block-title">特殊符号1</div>
+                    <div class="row" style="padding-left:10px;padding-right:5px;">
+                        <div class="col-10">ā</div><div class="col-10">á</div><div class="col-10">ǎ</div><div class="col-10">à</div><div class="col-10">ē</div><div class="col-10">é</div><div class="col-10">ě</div><div class="col-10">è</div><div class="col-10">ī</div><div class="col-10">í</div><div class="col-10">ǐ</div><div class="col-10">ì</div><div class="col-10">ō</div><div class="col-10">ó</div><div class="col-10">ǒ</div><div class="col-10">ò</div><div class="col-10">ū</div><div class="col-10">ú</div><div class="col-10">ǔ</div><div class="col-10">ù</div><div class="col-10">ǖ</div><div class="col-10">ǘ</div><div class="col-10">ǚ</div><div class="col-10">ǜ</div><div class="col-10">ü</div>
+                    </div>
+                    <div class="block-title">特殊符号2</div>
+                    <div class="row" style="padding-left:10px;padding-right:5px;">
+                        <div class="col-10">、</div><div class="col-10">。</div><div class="col-10">·</div><div class="col-10">ˉ</div><div class="col-10">ˇ</div><div class="col-10">¨</div><div class="col-10">〃</div><div class="col-10">々</div><div class="col-10">—</div><div class="col-10">～</div><div class="col-10">‖</div><div class="col-10">…</div><div class="col-10">‘</div><div class="col-10">’</div><div class="col-10">“</div><div class="col-10">”</div><div class="col-10">〔</div><div class="col-10">〕</div><div class="col-10">〈</div><div class="col-10">〉</div><div class="col-10">《</div><div class="col-10">》</div><div class="col-10">「</div><div class="col-10">」</div><div class="col-10">『</div><div class="col-10">』</div><div class="col-10">〖</div><div class="col-10">〗</div><div class="col-10">【</div><div class="col-10">】</div><div class="col-10">±</div><div class="col-10">×</div><div class="col-10">÷</div><div class="col-10">∶</div><div class="col-10">∧</div><div class="col-10">∨</div><div class="col-10">∑</div><div class="col-10">∏</div><div class="col-10">∪</div><div class="col-10">∩</div><div class="col-10">∈</div><div class="col-10">∷</div><div class="col-10">√</div><div class="col-10">⊥</div><div class="col-10">∥</div><div class="col-10">∠</div><div class="col-10">⌒</div><div class="col-10">⊙</div><div class="col-10">∫</div><div class="col-10">∮</div><div class="col-10">≡</div><div class="col-10">≌</div><div class="col-10">≈</div><div class="col-10">∽</div><div class="col-10">∝</div><div class="col-10">≠</div><div class="col-10">≮</div><div class="col-10">≯</div><div class="col-10">≤</div><div class="col-10">≥</div><div class="col-10">∞</div><div class="col-10">∵</div><div class="col-10">∴</div><div class="col-10">♂</div><div class="col-10">♀</div><div class="col-10">°</div><div class="col-10">′</div><div class="col-10">″</div><div class="col-10">℃</div><div class="col-10">＄</div><div class="col-10">¤</div><div class="col-10">￠</div><div class="col-10">￡</div><div class="col-10">‰</div><div class="col-10">§</div><div class="col-10">№</div><div class="col-10">☆</div><div class="col-10">★</div><div class="col-10">○</div><div class="col-10">●</div><div class="col-10">◎</div><div class="col-10">◇</div><div class="col-10">◆</div><div class="col-10">□</div><div class="col-10">■</div><div class="col-10">△</div><div class="col-10">▲</div><div class="col-10">※</div><div class="col-10">→</div><div class="col-10">←</div><div class="col-10">↑</div><div class="col-10">↓</div><div class="col-10">〓</div><div class="col-10">〡</div><div class="col-10">〢</div><div class="col-10">〣</div><div class="col-10">〤</div><div class="col-10">〥</div><div class="col-10">〦</div><div class="col-10">〧</div><div class="col-10">〨</div><div class="col-10">〩</div><div class="col-10">㊣</div><div class="col-10">㎎</div><div class="col-10">㎏</div><div class="col-10">㎜</div><div class="col-10">㎝</div><div class="col-10">㎞</div><div class="col-10">㎡</div><div class="col-10">㏄</div><div class="col-10">㏎</div><div class="col-10">㏑</div><div class="col-10">㏒</div><div class="col-10">㏕</div><div class="col-10">︰</div><div class="col-10">￢</div><div class="col-10">￤</div><div class="col-10">℡</div><div class="col-10">ˊ</div><div class="col-10">ˋ</div><div class="col-10">˙</div><div class="col-10">–</div><div class="col-10">―</div><div class="col-10">‥</div><div class="col-10">‵</div><div class="col-10">℅</div><div class="col-10">℉</div><div class="col-10">↖</div><div class="col-10">↗</div><div class="col-10">↘</div><div class="col-10">↙</div><div class="col-10">∕</div><div class="col-10">∟</div><div class="col-10">∣</div><div class="col-10">≒</div><div class="col-10">≦</div><div class="col-10">≧</div><div class="col-10">⊿</div><div class="col-10">═</div><div class="col-10">║</div><div class="col-10">╒</div><div class="col-10">╓</div><div class="col-10">╔</div><div class="col-10">╕</div><div class="col-10">╖</div><div class="col-10">╗</div><div class="col-10">╘</div><div class="col-10">╙</div><div class="col-10">╚</div><div class="col-10">╛</div><div class="col-10">╜</div><div class="col-10">╝</div><div class="col-10">╞</div><div class="col-10">╟</div><div class="col-10">╠</div><div class="col-10">╡</div><div class="col-10">╢</div><div class="col-10">╣</div><div class="col-10">╤</div><div class="col-10">╥</div><div class="col-10">╦</div><div class="col-10">╧</div><div class="col-10">╨</div><div class="col-10">╩</div><div class="col-10">╪</div><div class="col-10">╫</div><div class="col-10">╬</div><div class="col-10">╭</div><div class="col-10">╮</div><div class="col-10">╯</div><div class="col-10">╰</div><div class="col-10">╱</div><div class="col-10">╲</div><div class="col-10">╳</div><div class="col-10">▁</div><div class="col-10">▂</div><div class="col-10">▃</div><div class="col-10">▄</div><div class="col-10">▅</div><div class="col-10">▆</div><div class="col-10">▇</div><div class="col-10">�</div><div class="col-10">█</div><div class="col-10">▉</div><div class="col-10">▊</div><div class="col-10">▋</div><div class="col-10">▌</div><div class="col-10">▍</div><div class="col-10">▎</div><div class="col-10">▏</div><div class="col-10">▓</div><div class="col-10">▔</div><div class="col-10">▕</div><div class="col-10">▼</div><div class="col-10">▽</div><div class="col-10">◢</div><div class="col-10">◣</div><div class="col-10">◤</div><div class="col-10">◥</div><div class="col-10">☉</div><div class="col-10">⊕</div><div class="col-10">〒</div><div class="col-10">〝</div><div class="col-10">〞</div>
+                    </div>
+                    <div class="block-title">特殊符号3</div>
+                    <div class="row" style="padding-left:10px;padding-right:5px;">
+                        <div class="col-10">ⅰ</div><div class="col-10">ⅱ</div><div class="col-10">ⅲ</div><div class="col-10">ⅳ</div><div class="col-10">ⅴ</div><div class="col-10">ⅵ</div><div class="col-10">ⅶ</div><div class="col-10">ⅷ</div><div class="col-10">ⅸ</div><div class="col-10">ⅹ</div><div class="col-10">Ⅰ</div><div class="col-10">Ⅱ</div><div class="col-10">Ⅲ</div><div class="col-10">Ⅳ</div><div class="col-10">Ⅴ</div><div class="col-10">Ⅵ</div><div class="col-10">Ⅶ</div><div class="col-10">Ⅷ</div><div class="col-10">Ⅸ</div><div class="col-10">Ⅹ</div><div class="col-10">Ⅺ</div><div class="col-10">Ⅻ</div>
+                    </div>
+                    <div class="block-title">特殊符号4</div>
+                    <div class="row" style="padding-left:10px;padding-right:5px;">
+                        <div class="col-10">⒈</div><div class="col-10">⒉</div><div class="col-10">⒊</div><div class="col-10">⒋</div><div class="col-10">⒌</div><div class="col-10">⒍</div><div class="col-10">⒎</div><div class="col-10">⒏</div><div class="col-10">⒐</div><div class="col-10">⒑</div><div class="col-10">⒒</div><div class="col-10">⒓</div><div class="col-10">⒔</div><div class="col-10">⒕</div><div class="col-10">⒖</div><div class="col-10">⒗</div><div class="col-10">⒘</div><div class="col-10">⒙</div><div class="col-10">⒚</div><div class="col-10">⒛</div><div class="col-10">⑴</div><div class="col-10">⑵</div><div class="col-10">⑶</div><div class="col-10">⑷</div><div class="col-10">⑸</div><div class="col-10">⑹</div><div class="col-10">⑺</div><div class="col-10">⑻</div><div class="col-10">⑼</div><div class="col-10">⑽</div><div class="col-10">⑾</div><div class="col-10">⑿</div><div class="col-10">⒀</div><div class="col-10">⒁</div><div class="col-10">⒂</div><div class="col-10">⒃</div><div class="col-10">⒄</div><div class="col-10">⒅</div><div class="col-10">⒆</div><div class="col-10">⒇</div><div class="col-10">①</div><div class="col-10">②</div><div class="col-10">③</div><div class="col-10">④</div><div class="col-10">⑤</div><div class="col-10">⑥</div><div class="col-10">⑦</div><div class="col-10">⑧</div><div class="col-10">⑨</div><div class="col-10">⑩</div><div class="col-10">㈠</div><div class="col-10">㈡</div><div class="col-10">㈢</div><div class="col-10">㈣</div><div class="col-10">㈤</div><div class="col-10">㈥</div><div class="col-10">㈦</div><div class="col-10">㈧</div><div class="col-10">㈨</div><div class="col-10">㈩</div>
+                    </div>
+                    <div class="block-title">特殊符号5</div>
+                    <div class="row" style="padding-left:10px;padding-right:5px;">
+                        <div class="col-10">ぁ</div><div class="col-10">あ</div><div class="col-10">ぃ</div><div class="col-10">い</div><div class="col-10">ぅ</div><div class="col-10">う</div><div class="col-10">ぇ</div><div class="col-10">え</div><div class="col-10">ぉ</div><div class="col-10">お</div><div class="col-10">か</div><div class="col-10">が</div><div class="col-10">き</div><div class="col-10">ぎ</div><div class="col-10">く</div><div class="col-10">ぐ</div><div class="col-10">け</div><div class="col-10">げ</div><div class="col-10">こ</div><div class="col-10">ご</div><div class="col-10">さ</div><div class="col-10">ざ</div><div class="col-10">し</div><div class="col-10">じ</div><div class="col-10">す</div><div class="col-10">ず</div><div class="col-10">せ</div><div class="col-10">ぜ</div><div class="col-10">そ</div><div class="col-10">ぞ</div><div class="col-10">た</div><div class="col-10">だ</div><div class="col-10">ち</div><div class="col-10">ぢ</div><div class="col-10">っ</div><div class="col-10">つ</div><div class="col-10">づ</div><div class="col-10">て</div><div class="col-10">で</div><div class="col-10">と</div><div class="col-10">ど</div><div class="col-10">な</div><div class="col-10">に</div><div class="col-10">ぬ</div><div class="col-10">ね</div><div class="col-10">の</div><div class="col-10">は</div><div class="col-10">ば</div><div class="col-10">ぱ</div><div class="col-10">ひ</div><div class="col-10">び</div><div class="col-10">ぴ</div><div class="col-10">ふ</div><div class="col-10">ぶ</div><div class="col-10">ぷ</div><div class="col-10">へ</div><div class="col-10">べ</div><div class="col-10">ぺ</div><div class="col-10">ほ</div><div class="col-10">ぼ</div><div class="col-10">ぽ</div><div class="col-10">ま</div><div class="col-10">み</div><div class="col-10">む</div><div class="col-10">め</div><div class="col-10">も</div><div class="col-10">ゃ</div><div class="col-10">や</div><div class="col-10">ゅ</div><div class="col-10">ゆ</div><div class="col-10">ょ</div><div class="col-10">よ</div><div class="col-10">ら</div><div class="col-10">り</div><div class="col-10">る</div><div class="col-10">れ</div><div class="col-10">ろ</div><div class="col-10">ゎ</div><div class="col-10">わ</div><div class="col-10">ゐ</div><div class="col-10">ゑ</div><div class="col-10">を</div><div class="col-10">ん</div><div class="col-10">ァ</div><div class="col-10">ア</div><div class="col-10">ィ</div><div class="col-10">イ</div><div class="col-10">ゥ</div><div class="col-10">ウ</div><div class="col-10">ェ</div><div class="col-10">エ</div><div class="col-10">ォ</div><div class="col-10">オ</div><div class="col-10">カ</div><div class="col-10">ガ</div><div class="col-10">キ</div><div class="col-10">ギ</div><div class="col-10">ク</div><div class="col-10">グ</div><div class="col-10">ケ</div><div class="col-10">ゲ</div><div class="col-10">コ</div><div class="col-10">ゴ</div><div class="col-10">サ</div><div class="col-10">ザ</div><div class="col-10">シ</div><div class="col-10">ジ</div><div class="col-10">ス</div><div class="col-10">ズ</div><div class="col-10">セ</div><div class="col-10">ゼ</div><div class="col-10">ソ</div><div class="col-10">ゾ</div><div class="col-10">タ</div><div class="col-10">ダ</div><div class="col-10">チ</div><div class="col-10">ヂ</div><div class="col-10">ッ</div><div class="col-10">ツ</div><div class="col-10">ヅ</div><div class="col-10">テ</div><div class="col-10">デ</div><div class="col-10">ト</div><div class="col-10">ド</div><div class="col-10">ナ</div><div class="col-10">ニ</div><div class="col-10">ヌ</div><div class="col-10">ネ</div><div class="col-10">ノ</div><div class="col-10">ハ</div><div class="col-10">バ</div><div class="col-10">パ</div><div class="col-10">ヒ</div><div class="col-10">ビ</div><div class="col-10">ピ</div><div class="col-10">フ</div><div class="col-10">ブ</div><div class="col-10">プ</div><div class="col-10">ヘ</div><div class="col-10">ベ</div><div class="col-10">ペ</div><div class="col-10">ホ</div><div class="col-10">ボ</div><div class="col-10">ポ</div><div class="col-10">マ</div><div class="col-10">ミ</div><div class="col-10">ム</div><div class="col-10">メ</div><div class="col-10">モ</div><div class="col-10">ャ</div><div class="col-10">ヤ</div><div class="col-10">ュ</div><div class="col-10">ユ</div><div class="col-10">ョ</div><div class="col-10">ヨ</div><div class="col-10">ラ</div><div class="col-10">リ</div><div class="col-10">ル</div><div class="col-10">レ</div><div class="col-10">ロ</div><div class="col-10">ヮ</div><div class="col-10">ワ</div><div class="col-10">ヰ</div><div class="col-10">ヱ</div><div class="col-10">ヲ</div><div class="col-10">ン</div><div class="col-10">ヴ</div><div class="col-10">ヵ</div><div class="col-10">ヶ</div>
+                    </div>
+                    <div class="block-title">特殊符号6</div>
+                    <div class="row" style="padding-left:10px;padding-right:5px;">
+                        <div class="col-10">Α</div><div class="col-10">Β</div><div class="col-10">Γ</div><div class="col-10">Δ</div><div class="col-10">Ε</div><div class="col-10">Ζ</div><div class="col-10">Η</div><div class="col-10">Θ</div><div class="col-10">Ι</div><div class="col-10">Κ</div><div class="col-10">Λ</div><div class="col-10">Μ</div><div class="col-10">Ν</div><div class="col-10">Ξ</div><div class="col-10">Ο</div><div class="col-10">Π</div><div class="col-10">Ρ</div><div class="col-10">Σ</div><div class="col-10">Τ</div><div class="col-10">Υ</div><div class="col-10">Φ</div><div class="col-10">Χ</div><div class="col-10">Ψ</div><div class="col-10">Ω</div><div class="col-10">α</div><div class="col-10">β</div><div class="col-10">γ</div><div class="col-10">δ</div><div class="col-10">ε</div><div class="col-10">ζ</div><div class="col-10">η</div><div class="col-10">θ</div><div class="col-10">ι</div><div class="col-10">κ</div><div class="col-10">λ</div><div class="col-10">μ</div><div class="col-10">ν</div><div class="col-10">ξ</div><div class="col-10">ο</div><div class="col-10">π</div><div class="col-10">ρ</div><div class="col-10">σ</div><div class="col-10">τ</div><div class="col-10">υ</div><div class="col-10">φ</div><div class="col-10">χ</div><div class="col-10">ψ</div><div class="col-10">ω</div>
+                    </div>
+                    <div class="block-title">特殊符号7</div>
+                    <div class="row" style="padding-left:10px;padding-right:5px;">
+                        <div class="col-10">А</div><div class="col-10">Б</div><div class="col-10">В</div><div class="col-10">Г</div><div class="col-10">Д</div><div class="col-10">Е</div><div class="col-10">Ё</div><div class="col-10">Ж</div><div class="col-10">З</div><div class="col-10">И</div><div class="col-10">Й</div><div class="col-10">К</div><div class="col-10">Л</div><div class="col-10">М</div><div class="col-10">Н</div><div class="col-10">О</div><div class="col-10">П</div><div class="col-10">Р</div><div class="col-10">С</div><div class="col-10">Т</div><div class="col-10">У</div><div class="col-10">Ф</div><div class="col-10">Х</div><div class="col-10">Ц</div><div class="col-10">Ч</div><div class="col-10">Ш</div><div class="col-10">Щ</div><div class="col-10">Ъ</div><div class="col-10">Ы</div><div class="col-10">Ь</div><div class="col-10">Э</div><div class="col-10">Ю</div><div class="col-10">Я</div><div class="col-10">а</div><div class="col-10">б</div><div class="col-10">в</div><div class="col-10">г</div><div class="col-10">д</div><div class="col-10">е</div><div class="col-10">ё</div><div class="col-10">ж</div><div class="col-10">з</div><div class="col-10">и</div><div class="col-10">й</div><div class="col-10">к</div><div class="col-10">л</div><div class="col-10">м</div><div class="col-10">н</div><div class="col-10">о</div><div class="col-10">п</div><div class="col-10">р</div><div class="col-10">с</div><div class="col-10">т</div><div class="col-10">у</div><div class="col-10">ф</div><div class="col-10">х</div><div class="col-10">ц</div><div class="col-10">ч</div><div class="col-10">ш</div><div class="col-10">щ</div><div class="col-10">ъ</div><div class="col-10">ы</div><div class="col-10">ь</div><div class="col-10">э</div><div class="col-10">ю</div><div class="col-10">я</div>
+                    </div>
+                    <div class="block-title">特殊符号8</div>
+                    <div class="row" style="padding-left:10px;padding-right:5px;">
+                        <div class="col-10">i:</div><div class="col-10">i</div><div class="col-10">e</div><div class="col-10">æ</div><div class="col-10">ʌ</div><div class="col-10">ə:</div><div class="col-10">ə</div><div class="col-10">u:</div><div class="col-10">u</div><div class="col-10">ɔ:</div><div class="col-10">ɔ</div><div class="col-10">a:</div><div class="col-10">ei</div><div class="col-10">ai</div><div class="col-10">ɔi</div><div class="col-10">əu</div><div class="col-10">au</div><div class="col-10">iə</div><div class="col-10">εə</div><div class="col-10">uə</div><div class="col-10">p</div><div class="col-10">t</div><div class="col-10">k</div><div class="col-10">b</div><div class="col-10">d</div><div class="col-10">g</div><div class="col-10">f</div><div class="col-10">s</div><div class="col-10">ʃ</div><div class="col-10">θ</div><div class="col-10">h</div><div class="col-10">v</div><div class="col-10">z</div><div class="col-10">ʒ</div><div class="col-10">ð</div><div class="col-10">tʃ</div><div class="col-10">tr</div><div class="col-10">ts</div><div class="col-10">dʒ</div><div class="col-10">dr</div><div class="col-10">dz</div><div class="col-10">m</div><div class="col-10">n</div><div class="col-10">ŋ</div><div class="col-10">l</div><div class="col-10">r</div><div class="col-10">w</div><div class="col-10">j</div><div class="col-10">ㄅ</div><div class="col-10">ㄆ</div><div class="col-10">ㄇ</div><div class="col-10">ㄈ</div><div class="col-10">ㄉ</div><div class="col-10">ㄊ</div><div class="col-10">ㄋ</div><div class="col-10">ㄌ</div><div class="col-10">ㄍ</div><div class="col-10">ㄎ</div><div class="col-10">ㄏ</div><div class="col-10">ㄐ</div><div class="col-10">ㄑ</div><div class="col-10">ㄒ</div><div class="col-10">ㄓ</div><div class="col-10">ㄔ</div><div class="col-10">ㄕ</div><div class="col-10">ㄖ</div><div class="col-10">ㄗ</div><div class="col-10">ㄘ</div><div class="col-10">ㄙ</div><div class="col-10">ㄚ</div><div class="col-10">ㄛ</div><div class="col-10">ㄜ</div><div class="col-10">ㄝ</div><div class="col-10">ㄞ</div><div class="col-10">ㄟ</div><div class="col-10">ㄠ</div><div class="col-10">ㄡ</div><div class="col-10">ㄢ</div><div class="col-10">ㄣ</div><div class="col-10">ㄤ</div><div class="col-10">ㄥ</div><div class="col-10">ㄦ</div><div class="col-10">ㄧ</div><div class="col-10">ㄨ</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</template>
+<style>
+    .toolbarbox {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        box-shadow: rgba(204, 204, 204, 0.6) 0px 1px 4px 0px;
+        color: rgb(33, 33, 33);
+        font-size: 14px;
+        height: 32px;
+        line-height: 21px;
+        position: relative;
+        width: 100%;
+        padding-top: 8px;
+    }
+
+    .dianzhong {
+        color: red;
+    }
+
+    .row div {
+        font-size: 18px;
+    }
+</style>
+<script>
+    function mingchengzu3(date) {
+        var zhang = [];
+        for (var i = 0; i < date.length; i++) {
+            zhang.push(date[i]._id);
+        }
+        return zhang;
+    }
+    function mingchengzu2(date) {
+        var zhang = [];
+        for (var i = 0; i < date.length; i++) {
+            zhang.push(date[i]._xuanxiang);
+        }
+        return zhang;
+    }
+    function mingchengzu(date) {
+        var zhang = [];
+        for (var i = 0; i < date.length; i++) {
+            zhang.push(date[i]._mingcheng);
+        }
+        return zhang;
+    }
+    function xianshimingchengzu(date) {
+        var zhangxian = [];
+        for (var i = 0; i < date.length; i++) {
+            zhangxian.push("(" + date[i]._tiliang1 + ")" + date[i]._mingcheng);
+        }
+        return zhangxian;
+    }
+    return {
+        data: function () {
+            return {
+                xx: ['A', 'B', 'C', 'D', 'E'],
+                allow: true,
+                has: true,
+                timus: [],
+                yema: 0,
+                zhangs: null,
+                jieid:null,//当前节的id
+                chaxuntext: "",
+                pickerA: null,//章节选择器
+                pickerB: null,//答案选择器
+                pickerC: null,//修改章节的选择器
+                zhangjie: null,//课程的章节
+                zongshu: 0,
+                popupA: null,//展现具体题目
+                dqtm: {
+                    _id: "",
+                    _tiganid:"",
+                    _tigan: { _id: "", _tigan: "" },
+                    _timu: "",
+                    _xuanxiangs: [{ _id:"",_xuanxiang: "",IsTrue:"" }],
+                    _jiexi: "",
+                    _jieid:"",
+                },
+                dqzhang: {},//当前章
+                dqjie: {},//当前节
+                popupB: null,//编辑具体题目
+                bianjileibie: "",//编辑类别
+                bianjileirong: "",//编辑内容
+                bianjikuang: null,//富文本编辑框
+                xiabiaokaiguan: false,//下标开关
+                shangbiaokaiguan: false,//上标开关
+                popupC: null,//特殊符号popup
+
+            }
+        },
+        methods: {
+            loadMore: function () {
+                var self = this;
+                var $ = self.$$;
+                if (!self.allow) return;
+                self.allow = false;
+
+                var app = self.$app;
+
+                if (self.timus.length >= self.zongshu) {
+
+                    app.toast.create({
+                        text: '没有更多了',
+                        closeTimeout: 3000,
+                        position: 'center'
+                    }).open();
+                    self.$setState({
+                        has: false,
+                    });
+                    return;
+                }
+                self.$setState({
+                    has: true,
+                });
+                setTimeout(function () {
+                    var cs = {};
+
+                    if (self.jieid != null) {
+                        cs.jieid = self.jieid;
+                    }
+                    cs.ye = self.yema + 1;
+                    cs.zt = "1";
+                    cs.sl = 20;
+
+                    app.request({
+                        type: 'POST',
+                        url: 'gettimus',
+                        data: cs,
+                        success: function (data) {
+                            if (data.reslut == "true") {
+                                for (var i = 0; i < data.tms.length; i++) {
+                                    self.timus.push(data.tms[i]);
+                                }
+                                self.$setState({
+                                    zongshu: data.zs,
+                                    timus: self.timus,
+                                    yema: self.yema + 1,
+                                    has: false,
+                                });
+
+                            }
+                            else {
+                                self.$setState({
+                                    has: false,
+                                })
+                            }
+                        },
+                        error: function () {
+                            self.$setState({
+                                has: false,
+                            });
+                            app.toast.create({
+                                text: '获取题目失败',
+                                closeTimeout: 3000,
+                                position: 'center'
+                            }).open();
+                        },
+                        dataType: 'json',
+                        timeout: 10000
+                    });
+                    self.allow = true;
+                }, 1000);
+
+            },
+            dianjitimu: function (id) {
+                var self = this;
+                var app = self.$app;
+                for (var i = 0; i < self.timus.length; i++) {
+                    if (self.timus[i]._id == id) {
+                        self.dqtm = self.timus[i];
+                        for (var j = 0; j < self.zhangjie.length; j++) {
+                            var zhangz = self.zhangjie[j];
+                            var zd = false;
+                            for (var n = 0; n < zhangz._jies.length; n++) {
+                                if (zhangz._jies[n]._id == self.dqtm._jieid) {
+                                    self.dqjie = zhangz._jies[n];
+                                    self.dqzhang = zhangz;
+                                    zd = true;
+                                    break;
+                                }
+                            }
+                            if (zd)
+                                break;
+                        }
+                        self.$setState({
+                            dqtm: self.dqtm,
+                            dqzhang: self.dqzhang,
+                            dqjie: self.dqjie,
+                        });
+                        self.popupA.open();
+                        break;
+                    }
+                }
+            },
+            dakaib: function (leibie) {
+                var self = this;
+                self.bianjileibie = leibie;
+                switch (leibie) {
+                    case '题干':
+                        self.bianjileirong = self.dqtm._tigan._tigan;
+                        break;
+                    case '题目':
+                        self.bianjileirong = self.dqtm._timu;
+                        break;
+                    case 0:
+                        self.bianjileirong = self.dqtm._xuanxiangs[0]._xuanxiang;
+                        self.bianjileibie = "选项A";
+                        break;
+                    case 1:
+                        self.bianjileirong = self.dqtm._xuanxiangs[1]._xuanxiang;
+                        self.bianjileibie = "选项B";
+                        break;
+                    case 2:
+                        self.bianjileirong = self.dqtm._xuanxiangs[2]._xuanxiang;
+                        self.bianjileibie = "选项C";
+                        break;
+                    case 3:
+                        self.bianjileirong = self.dqtm._xuanxiangs[3]._xuanxiang;
+                        self.bianjileibie = "选项D";
+                        break;
+                    case 4:
+                        self.bianjileirong = self.dqtm._xuanxiangs[4]._xuanxiang;
+                        self.bianjileibie = "选项E";
+                        break;
+                    case '解析':
+                        self.bianjileirong = self.dqtm._jiexi;
+                        break;
+                }
+
+                self.$setState({
+                    bianjileibie: self.bianjileibie,
+                    bianjileirong: self.bianjileirong,
+                });
+                self.popupB.open();
+            },
+            quxiao: function () {
+                this.popupB.close();
+            },
+            quxiao3: function () {
+                this.popupC.close();
+            },
+            tongguo: function () {
+                var self = this;
+                app.dialog.preloader('提交中...');
+                app.request({
+                    type: 'POST',
+                    url: 'xiaoyantongguo',
+                    data: { timuid: self.dqtm._id },//post类别，题干id，修改后的题干
+                    success: function (data) {
+                        app.dialog.close();
+                        if (data == "true") {
+                            
+                            for (var i = 0; i < self.timus.length; i++) {
+                                if (self.timus[i]._id == self.dqtm._id) {
+                                    self.timus.splice(i, 1);
+                                    break;
+                                }
+                            }
+                            self.$setState();
+                            self.popupA.close();
+                        }
+                        else {
+
+                        }
+                    },
+                    error: function () {
+                        app.dialog.close();
+                        app.toast.create({
+                            text: '修改失败，请检查网络。',
+                            closeTimeout: 3000,
+                            position: 'center'
+                        }).open();
+                    },
+                    timeout: 10000
+                });
+            },//效验通过
+        },
+        on: {
+            pageInit: function () {
+                // do something on page init
+                var self = this;
+                var app = self.$app;
+                var $ = self.$$;
+                self.bianjikuang = document.getElementById("bianjikuang");
+                $("#xiugaiqueren2").on('click', function () {
+                    var lrr = self.bianjikuang.contentDocument.body.innerHTML;
+                    switch (self.bianjileibie) {
+                        case '题干':
+                            app.dialog.preloader('提交中...');
+                            app.request({
+                                type: 'POST',
+                                url: 'updatetimu',
+                                data: { lb: "tigan", tgid: self.dqtm._tigan._id, tg: lrr },//post类别，题干id，修改后的题干
+                                success: function (data) {
+                                    app.dialog.close();
+                                    if (data == "true") {
+                                        self.dqtm._tigan._tigan = lrr;
+                                        for (var i = 0; i < self.timus.length; i++) {
+                                            if (self.timus[i]._id == self.dqtm._id) {
+                                                self.timus[i] = self.dqtm;
+                                                break;
+                                            }
+                                        }
+                                        self.$setState();
+                                        self.popupB.close();
+                                    }
+                                    else {
+
+                                    }
+                                },
+                                error: function () {
+                                    app.dialog.close();
+                                    app.toast.create({
+                                        text: '修改失败，请检查网络。',
+                                        closeTimeout: 3000,
+                                        position: 'center'
+                                    }).open();
+                                },
+                                timeout: 10000
+                            });
+                            break;
+                        case '题目':
+                            app.dialog.preloader('提交中...');
+                            app.request({
+                                type: 'POST',
+                                url: 'updatetimu',
+                                data: { lb: "timu", tmid: self.dqtm._id, tm: lrr },
+                                success: function (data) {
+                                    app.dialog.close();
+                                    if (data == "true") {
+                                        self.dqtm._timu = lrr;
+                                        for (var i = 0; i < self.timus.length; i++) {
+                                            if (self.timus[i]._id == self.dqtm._id) {
+                                                self.timus[i] = self.dqtm;
+                                                break;
+                                            }
+                                        }
+                                        self.$setState();
+                                        self.popupB.close();
+                                    }
+                                    else {
+
+                                    }
+                                },
+                                error: function () {
+                                    app.dialog.close();
+                                    app.toast.create({
+                                        text: '修改失败，请检查网络。',
+                                        closeTimeout: 3000,
+                                        position: 'center'
+                                    }).open();
+                                },
+                                timeout: 10000
+                            });
+                            break;
+                        case '解析':
+                            app.dialog.preloader('提交中...');
+                            app.request({
+                                type: 'POST',
+                                url: 'updatetimu',
+                                data: { lb: "jiexi", tmid: self.dqtm._id, jx: lrr },
+                                success: function (data) {
+                                    app.dialog.close();
+                                    if (data == "true") {
+                                        self.dqtm._jiexi = lrr;
+                                        for (var i = 0; i < self.timus.length; i++) {
+                                            if (self.timus[i]._id == self.dqtm._id) {
+                                                self.timus[i] = self.dqtm;
+                                                break;
+                                            }
+                                        }
+                                        self.$setState();
+                                        self.popupB.close();
+                                    }
+                                    else {
+
+                                    }
+                                },
+                                error: function () {
+                                    app.dialog.close();
+                                    app.toast.create({
+                                        text: '修改失败，请检查网络。',
+                                        closeTimeout: 3000,
+                                        position: 'center'
+                                    }).open();
+                                },
+                                timeout: 10000
+                            });
+                            break;
+                        case '选项A':
+                            app.dialog.preloader('提交中...');
+                            app.request({
+                                type: 'POST',
+                                url: 'updatetimu',
+                                data: { lb: "xuanxiang", xxid: self.dqtm._xuanxiangs[0]._id, xx: lrr },//post类别，题干id，修改后的题干
+                                success: function (data) {
+                                    app.dialog.close();
+                                    if (data == "true") {
+                                        self.dqtm._xuanxiangs[0]._xuanxiang = lrr;
+                                        for (var i = 0; i < self.timus.length; i++) {
+                                            if (self.timus[i]._id == self.dqtm._id) {
+                                                self.timus[i] = self.dqtm;
+                                                break;
+                                            }
+                                        }
+                                        self.$setState();
+                                        self.popupB.close();
+                                    }
+                                    else {
+
+                                    }
+                                },
+                                error: function () {
+                                    app.dialog.close();
+                                    app.toast.create({
+                                        text: '修改失败，请检查网络。',
+                                        closeTimeout: 3000,
+                                        position: 'center'
+                                    }).open();
+                                },
+                                timeout: 10000
+                            });
+                            break;
+                        case '选项B':
+                            app.dialog.preloader('提交中...');
+                            app.request({
+                                type: 'POST',
+                                url: 'updatetimu',
+                                data: { lb: "xuanxiang", xxid: self.dqtm._xuanxiangs[1]._id, xx: lrr },//post类别，题干id，修改后的题干
+                                success: function (data) {
+                                    app.dialog.close();
+                                    if (data == "true") {
+                                        self.dqtm._xuanxiangs[1]._xuanxiang = lrr;
+                                        for (var i = 0; i < self.timus.length; i++) {
+                                            if (self.timus[i]._id == self.dqtm._id) {
+                                                self.timus[i] = self.dqtm;
+                                                break;
+                                            }
+                                        }
+                                        self.$setState();
+                                        self.popupB.close();
+                                    }
+                                    else {
+
+                                    }
+                                },
+                                error: function () {
+                                    app.dialog.close();
+                                    app.toast.create({
+                                        text: '修改失败，请检查网络。',
+                                        closeTimeout: 3000,
+                                        position: 'center'
+                                    }).open();
+                                },
+                                timeout: 10000
+                            });
+                            break;
+                        case '选项C':
+                            app.dialog.preloader('提交中...');
+                            app.request({
+                                type: 'POST',
+                                url: 'updatetimu',
+                                data: { lb: "xuanxiang", xxid: self.dqtm._xuanxiangs[2]._id, xx: lrr },//post类别，题干id，修改后的题干
+                                success: function (data) {
+                                    app.dialog.close();
+                                    if (data == "true") {
+                                        self.dqtm._xuanxiangs[2]._xuanxiang = lrr;
+                                        for (var i = 0; i < self.timus.length; i++) {
+                                            if (self.timus[i]._id == self.dqtm._id) {
+                                                self.timus[i] = self.dqtm;
+                                                break;
+                                            }
+                                        }
+                                        self.$setState();
+                                        self.popupB.close();
+                                    }
+                                    else {
+
+                                    }
+                                },
+                                error: function () {
+                                    app.dialog.close();
+                                    app.toast.create({
+                                        text: '修改失败，请检查网络。',
+                                        closeTimeout: 3000,
+                                        position: 'center'
+                                    }).open();
+                                },
+                                timeout: 10000
+                            });
+                            break;
+                        case '选项D':
+                            app.dialog.preloader('提交中...');
+                            app.request({
+                                type: 'POST',
+                                url: 'updatetimu',
+                                data: { lb: "xuanxiang", xxid: self.dqtm._xuanxiangs[3]._id, xx: lrr },//post类别，题干id，修改后的题干
+                                success: function (data) {
+                                    app.dialog.close();
+                                    if (data == "true") {
+                                        self.dqtm._xuanxiangs[3]._xuanxiang = lrr;
+                                        for (var i = 0; i < self.timus.length; i++) {
+                                            if (self.timus[i]._id == self.dqtm._id) {
+                                                self.timus[i] = self.dqtm;
+                                                break;
+                                            }
+                                        }
+                                        self.$setState();
+                                        self.popupB.close();
+                                    }
+                                    else {
+
+                                    }
+                                },
+                                error: function () {
+                                    app.dialog.close();
+                                    app.toast.create({
+                                        text: '修改失败，请检查网络。',
+                                        closeTimeout: 3000,
+                                        position: 'center'
+                                    }).open();
+                                },
+                                timeout: 10000
+                            });
+                            break;
+                        case '选项E':
+                            app.dialog.preloader('提交中...');
+                            app.request({
+                                type: 'POST',
+                                url: 'updatetimu',
+                                data: { lb: "xuanxiang", xxid: self.dqtm._xuanxiangs[4]._id, xx: lrr },//post类别，题干id，修改后的题干
+                                success: function (data) {
+                                    app.dialog.close();
+                                    if (data == "true") {
+                                        self.dqtm._xuanxiangs[4]._xuanxiang = lrr;
+                                        for (var i = 0; i < self.timus.length; i++) {
+                                            if (self.timus[i]._id == self.dqtm._id) {
+                                                self.timus[i] = self.dqtm;
+                                                break;
+                                            }
+                                        }
+                                        self.$setState();
+                                        self.popupB.close();
+                                    }
+                                    else {
+
+                                    }
+                                },
+                                error: function () {
+                                    app.dialog.close();
+                                    app.toast.create({
+                                        text: '修改失败，请检查网络。',
+                                        closeTimeout: 3000,
+                                        position: 'center'
+                                    }).open();
+                                },
+                                timeout: 10000
+                            });
+                            break;
+                    }
+
+
+                });//富文本编辑popup点击确定，确定修改
+
+                $("#btn1").on("click", function () {
+                    self.bianjikuang.focus();
+                    $("#gongjulan i").removeClass("dianzhong");
+                    if (self.shangbiaokaiguan) {
+                        self.bianjikuang.contentDocument.execCommand('superscript', false);
+                        self.shangbiaokaiguan = false;
+                    }
+                    if (!self.xiabiaokaiguan) {
+                        $(this).addClass("dianzhong");
+                        self.bianjikuang.contentDocument.execCommand('subscript', false);
+                        self.xiabiaokaiguan = true;
+                    }
+                    else {
+                        self.bianjikuang.contentDocument.execCommand('subscript', false);
+                        self.xiabiaokaiguan = false;
+                    }
+
+                });//开启或关闭下标按钮
+                $("#btn2").on("click", function () {
+                    self.bianjikuang.focus();
+                    $("#gongjulan i").removeClass("dianzhong");
+                    if (self.xiabiaokaiguan) {
+                        self.bianjikuang.contentDocument.execCommand('subscript', false);
+                        self.xiabiaokaiguan = false;
+                    }
+                    if (!self.shangbiaokaiguan) {
+                        $(this).addClass("dianzhong");
+                        self.bianjikuang.contentDocument.execCommand('superscript', false);
+                        self.shangbiaokaiguan = true;
+                    }
+                    else {
+                        self.bianjikuang.contentDocument.execCommand('superscript', false);
+                        self.shangbiaokaiguan = false;
+                    }
+
+                });//开启或关闭上标按钮
+
+                $("#btn3").on("click", function () {
+                    self.popupC.open();
+
+                });//特殊符号打开按钮
+
+                $(".col-10").on("click", function () {
+                    self.popupC.close();
+                    $("#gongjulan i").removeClass("dianzhong");
+                    if (self.xiabiaokaiguan) {
+                        self.bianjikuang.contentDocument.execCommand('subscript', false);
+                        self.xiabiaokaiguan = false;
+                    }
+                    if (self.shangbiaokaiguan) {
+                        self.bianjikuang.contentDocument.execCommand('superscript', false);
+                        self.shangbiaokaiguan = false;
+                    }
+                    self.bianjikuang.contentDocument.execCommand('insertHTML', false, $(this).text());
+                });//点击特殊符号
+
+                self.zhangjie =@Html.Raw(ViewBag.zj);
+                self.pickerC = app.picker.create({
+                    inputEl: '#zhangjie-picker',
+                    rotateEffect: true,
+                    renderToolbar: function () {
+                        return '<div class="toolbar">' +
+                            '<div class="toolbar-inner">' +
+                            '<div class="left">' +
+                            '</div>' +
+                            '<div class="right">' +
+                            '<a href="#" class="link toolbar-randomize-link float-right">确定</a>' +
+                            '<a href="#" class="link sheet-close popover-close float-right">取消</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                    },
+                    cols: [
+                        {
+                            textAlign: 'left',
+                            values: mingchengzu3(self.zhangjie),
+                            displayValues: mingchengzu(self.zhangjie),
+                            onChange: function (picker, country) {
+                                if (picker.cols[1].replaceValues) {
+                                    var j;
+                                    for (var i = 0; i < self.zhangjie.length; i++) {
+                                        if (country == self.zhangjie[i]._id) {
+                                            j = i
+                                            break;
+                                        }
+                                    }
+                                    picker.cols[1].replaceValues(mingchengzu3(self.zhangjie[j]._jies), mingchengzu(self.zhangjie[j]._jies));
+                                }
+                            }
+                        },
+                        {
+                            values: mingchengzu3(self.zhangjie[0]._jies),
+                            displayValues: mingchengzu(self.zhangjie[0]._jies),
+                            width: 260,
+                        },
+                    ],
+                    on: {
+                        open: function (picker) {
+
+                            picker.$el.find('.toolbar-randomize-link').on('click', function () {
+                                app.dialog.preloader('提交中...');
+                                app.request({
+                                    type: 'POST',
+                                    url: 'updatetimu',
+                                    data: { lb: "zhangjie", tmid: self.dqtm._id, jieid: picker.cols[1].value },//post类别，题目id，jieid
+                                    success: function (data) {
+                                        app.dialog.close();
+                                        if (data == "true") {
+                                            for (var i = 0; i < self.zhangjie.length; i++) {
+                                                if (self.zhangjie[i]._id == picker.cols[0].value) {
+                                                    self.dqzhang = self.zhangjie[i];
+                                                    for (var j = 0; j < self.dqzhang._jies.length; j++) {
+                                                        if (self.dqzhang._jies[j]._id == picker.cols[1].value) {
+                                                            self.dqjie = self.dqzhang._jies[j];
+                                                            break;
+                                                        }
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                            for (var i = 0; i < self.timus.length; i++) {
+                                                if (self.timus[i]._id == self.dqtm._id) {
+                                                    self.timus.splice(i, 1);
+                                                    break;
+                                                }
+                                            }
+                                            self.$setState();
+                                            picker.close();
+                                        }
+                                        else {
+
+                                        }
+                                    },
+                                    error: function () {
+                                        app.dialog.close();
+                                        app.toast.create({
+                                            text: '修改失败，请检查网络。',
+                                            closeTimeout: 3000,
+                                            position: 'center'
+                                        }).open();
+                                    },
+                                    timeout: 10000
+                                });
+
+                            });
+                            picker.cols[0].setValue(self.dqzhang._id);
+                            picker.cols[1].replaceValues(mingchengzu3(self.dqzhang._jies), mingchengzu(self.dqzhang._jies));
+                            picker.cols[1].setValue(self.dqjie._id);
+
+
+                        }
+                    }
+                });//章选择器（题目修改）
+                self.pickerB = app.picker.create({
+                    inputEl: '#daan-picker',
+                    rotateEffect: true,
+                    renderToolbar: function () {
+                        return '<div class="toolbar">' +
+                            '<div class="toolbar-inner">' +
+                            '<div class="left">' +
+                            '</div>' +
+                            '<div class="right">' +
+                            '<a href="#" class="link toolbar-randomize-link float-right">确定</a>' +
+                            '<a href="#" class="link sheet-close popover-close float-right">取消</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                    },
+                    cols: [
+                        {
+                            textAlign: 'center',
+                            displayValues: ['A', 'B', 'C', 'D', 'E'],
+                            values:[0,1,2,3,4]
+                        },
+                    ],
+                    on: {
+                        open: function (picker) {
+                            picker.$el.find('.toolbar-randomize-link').on('click', function () {
+                                app.dialog.preloader('提交中...');
+                                app.request({
+                                    type: 'POST',
+                                    url: 'updatetimu',
+                                    data: { lb: "daan", tmid: self.dqtm._id, xxid: self.dqtm._xuanxiangs[picker.cols[0].value]._id },//post类别，题目id，选项id
+                                    success: function (data) {
+                                        app.dialog.close();
+                                        if (data == "true") {
+                                            for (var i = 0; i < self.dqtm._xuanxiangs.length; i++) {
+                                                self.dqtm._xuanxiangs[i]._IsTrue = false;
+                                            }
+                                            self.dqtm._xuanxiangs[picker.cols[0].value]._IsTrue = true;
+                                            self.$setState();
+                                            picker.close();
+                                        }
+                                        else {
+
+                                        }
+                                    },
+                                    error: function () {
+                                        app.dialog.close();
+                                        app.toast.create({
+                                            text: '修改失败，请检查网络。',
+                                            closeTimeout: 3000,
+                                            position: 'center'
+                                        }).open();
+                                    },
+                                    timeout: 10000
+                                });
+
+
+                            });
+                        }
+                    }
+                });//答案选择器
+                self.pickerA = app.picker.create({
+                    inputEl: '#demo-picker-dependent',
+                    rotateEffect: true,
+                    formatValue: function (values) {
+                        return values;
+                    },
+                    cols:
+                        [
+                            {
+                                textAlign: 'left',
+                                values: mingchengzu(self.zhangjie),
+                                displayValues: xianshimingchengzu(self.zhangjie),
+                                onChange: function (picker, country) {
+                                    if (picker.cols[1].replaceValues) {
+                                        var j;
+                                        for (var i = 0; i < self.zhangjie.length; i++) {
+                                            if (country == self.zhangjie[i]._mingcheng) {
+                                                j = i
+                                                break;
+                                            }
+                                        }
+                                        picker.cols[1].replaceValues(mingchengzu(self.zhangjie[j]._jies), xianshimingchengzu(self.zhangjie[j]._jies));
+                                    }
+                                }
+                            },
+                            {
+                                values: mingchengzu(self.zhangjie[0]._jies),
+                                displayValues: xianshimingchengzu(self.zhangjie[0]._jies),
+                                width: 260,
+                            },
+                        ],
+                    on: {
+                        closed: function (picker) {
+                            var jiemingcheng = picker.value[1];
+                            var zhangmingcheng = picker.value[0];
+                            for (var i = 0; i < self.zhangjie.length; i++) {
+                                if (zhangmingcheng == self.zhangjie[i]._mingcheng) {
+                                    for (var j = 0; j < self.zhangjie[i]._jies.length; j++) {
+                                        if (jiemingcheng == self.zhangjie[i]._jies[j]._mingcheng) {
+                                            self.jieid = self.zhangjie[i]._jies[j]._id;
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+
+                            self.timus = [];
+                            self.has = true;
+                            self.yema = 0;
+                            self.zongshu = 0;
+                            self.allow = false;
+                            self.$setState({
+                                has: self.has,
+                                items: self.timus,
+                            });
+                            setTimeout(function () {
+                                var cs = {};
+
+                                if (self.jieid != null) {
+                                    cs.jieid = self.jieid;
+                                }
+                                cs.ye = self.yema + 1;
+                                cs.zt = "1";
+                                cs.sl = 20;
+
+                                app.request({
+                                    type: 'POST',
+                                    url: 'gettimus',
+                                    data: cs,
+                                    success: function (data) {
+                                        if (data.reslut == "true") {
+                                            for (var i = 0; i < data.tms.length; i++) {
+                                                self.timus.push(data.tms[i]);
+                                            }
+                                            self.$setState({
+                                                zongshu: data.zs,
+                                                timus: self.items,
+                                                yema: self.yema + 1,
+                                                has: false,
+                                            });
+
+                                        }
+                                        else {
+                                            self.$setState({
+                                                has: false,
+                                            })
+                                        }
+                                    },
+                                    error: function () {
+                                        self.$setState({
+                                            has: false,
+                                        });
+                                        app.toast.create({
+                                            text: '获取题目失败',
+                                            closeTimeout: 3000,
+                                            position: 'center'
+                                        }).open();
+                                    },
+                                    dataType: 'json',
+                                    timeout: 10000
+                                });
+                                self.allow = true;
+                            }, 1000);
+
+                        }
+                    }
+                });//章节选择器（获取题目）
+                self.popupA = app.popup.create({ el: $(".demo-popup") });
+
+                self.popupC = app.popup.create({
+                    el: $(".teshufuhao-popup"),
+                    on: {
+                        close: function (popup) {
+                            self.bianjikuang.focus();
+                        },
+                    }
+                });
+                self.popupB = app.popup.create({
+                    el: $(".bianji-popup"),
+                    on: {
+                        close: function (popup) {
+
+                            self.bianjileirong = $("#bianjikuang").text();
+                        },
+                        opened: function (popup) {
+                            $("#gongjulan i").removeClass("dianzhong");
+                            if (self.xiabiaokaiguan) {
+                                self.xiabiaokaiguan = false;
+                                self.bianjikuang.contentDocument.execCommand('subscript', false);
+                            }
+                            if (self.shangbiaokaiguan) {
+                                self.shangbiaokaiguan = false;
+                                self.bianjikuang.contentDocument.execCommand('superscript', false);
+                            }
+                            self.bianjikuang.contentDocument.body.innerHTML = self.bianjileirong;
+                            self.bianjikuang.contentDocument.designMode = "on";
+
+
+
+                        },
+                    }
+                });//富文本编辑器所在
+                app.request({
+                    type: 'POST',
+                    url: 'gettimus',
+                    data: { ye: self.yema + 1, sl: 20, zt: "1" },
+                    success: function (data) {
+                        if (data.reslut == "true") {
+
+                            for (var i = 0; i < data.tms.length; i++) {
+                                self.timus.push(data.tms[i]);
+                            }
+                            self.dqtm = data.tms[0];
+
+                            self.$setState({
+                                zongshu: data.zs,
+                                timus: self.timus,
+                                yema: self.yema + 1,
+                                has: false,
+                                dqtm: self.dqtm,
+                            });
+
+                        }
+                        else {
+                            self.$setState({
+                                has: false,
+                            })
+                        }
+                    },
+                    error: function () {
+                        self.$setState({
+                            has: false,
+                        });
+                        app.toast.create({
+                            text: '获取题目失败',
+                            closeTimeout: 3000,
+                            position: 'center'
+                        }).open();
+                    },
+                    dataType: 'json',
+                    timeout: 10000
+                });
+
+
+
+
+            },
+            pageAfterOut: function () {
+                // page has left the view
+            },
+        }
+    }
+
+</script>
+

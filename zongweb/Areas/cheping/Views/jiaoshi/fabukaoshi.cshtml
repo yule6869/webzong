@@ -1,0 +1,577 @@
+﻿@model List<chepingxitong.KaoShi>
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">发布试卷</div>
+                <div class="right">
+                    <a href="#" class="col-33 tablet-15 demo-icon" style="margin-right:10px;" id="queding">
+                        <div class="demo-icon-icon"><i class="f7-icons">check</i></div>
+                        <div class="demo-icon-name" style="color:white;margin-top:0px;">确定</div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="list no-hairlines-md" style="margin-top:10px;">
+                <ul>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">试卷名</div>
+                            <div class="item-input-wrap">
+                                <input type="text" placeholder="试卷名" style="font-size:12px;" id="shijuanming" required validate />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="item-link smart-select smart-select-init" data-open-in="popover">
+                            <select name="superhero" multiple id="banjis">
+                                @foreach (chepingxitong.BanJi item in ViewBag.bjs)
+                                {
+                                    <option value="@item._banhao">@item._banjiming</option>
+                                }
+
+                            </select>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title" style="font-size:12px;">选择班级</div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="block-title">题目数量：<span style="color:green">{{timus.length}}</span></div>
+            <div class="block">
+                <p class="segmented segmented-raised">
+                    <a class="button button-small color-blue" id="suijichou">随机抽取</a>
+                    <a class="button button-small color-blue" id="shoudongchou">手动抽取</a>
+                    <a class="button button-small color-blue" id="qingkong">清空</a>
+
+                </p>
+            </div>
+            {{#js_if "this.timus.length===0"}}
+            <div class="block-title" style="text-align:center;">还未选择题目</div>
+            {{else}}
+            <div class="list">
+                <ul id="tmlist">
+                    {{#each timus}}
+                    <li class="swipeout">
+                        <div class="item-content swipeout-content">
+                            <div class="item-inner">
+                                <div class="item-title">{{js 'this._timu.replace(new RegExp("<","g"),"&lt")'}}</div>
+                            </div>
+                        </div>
+                        <div class="swipeout-actions-right">
+                            <a href="#" class="color-red" @@click="onDeleted('{{this._id}}')">删除</a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{/js_if}}
+        </div>
+
+        <div class="popup demo-popup">
+            <div class="page">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="title">手动选题</div>
+                        <div class="right">
+                            <a href="#" class="link popup-close">取消</a>
+                            <a href="#" class="link popup-close" id="xiugaiqueren">确定</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="block-title" style="margin-top:10px;margin-bottom:0px;">题目来源</div>
+                    <div class="list no-hairlines-md">
+                        <ul>
+                            <li>
+                                <div class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-input-wrap">
+                                            <input type="text" placeholder="题目来源" readonly="readonly" id="demo-picker-dependent2" style="font-size:12px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="block-title" style="margin-top:10px;margin-bottom:0px;">章节</div>
+                    <div class="list no-hairlines-md">
+                        <ul>
+                            <li>
+                                <div class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-input-wrap">
+                                            <input type="text" placeholder="章节" readonly="readonly" id="demo-picker-dependent" style="font-size:12px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="block-title">全选：<label class="checkbox"><input type="checkbox" id="qx"><i class="icon-checkbox"></i></label></div>
+
+                    {{#js_if "this.daixuantis.length!=0"}}
+                    <div class="list">
+                        <ul id="dxx">
+                            {{#each daixuantis}}
+                            <li>
+                                <label class="item-checkbox item-content">
+                                    <input type="checkbox" name="demo-checkbox" value="{{this._id}}" />
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-text">{{js 'this._timu.replace(new RegExp("<","g"),"&lt")'}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{/js_if}}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</template>
+<script>
+    function mingchengzu(date) {
+        var zhang = [];
+        for (var i = 0; i < date.length; i++) {
+            zhang.push(date[i]._id);
+        }
+        return zhang;
+    }
+    function xianshimingchengzu(date) {
+        var zhangxian = [];
+        for (var i = 0; i < date.length; i++) {
+            zhangxian.push("(" + date[i]._tiliang2 + ")" + date[i]._mingcheng);
+        }
+        return zhangxian;
+    }
+
+    return {
+        data: function () {
+            return {
+                allow: true,
+                pickerA: null,//随机抽取题目量
+                popupA: null,//手动选题页面
+                timus: [],//已选题目
+                daixuantis: [],//待选题
+                pickerB: null,//手动选题的章节选择器
+                pickerC: null,//题目来源选择器
+                zhangjie:null,//章节数据
+            }
+        },
+        on: {
+            pageInit: function (e, page) {
+                var self = this;
+                var app = self.$app;
+                var $ = self.$$;
+                
+                self.zhangjie = @Html.Raw(ViewBag.zj);
+
+                app.request({
+                    type: 'POST',
+                    url: 'gettimus',
+                    data: { sl:20, zt: "2", sj: 1 },
+                    success: function (data) {
+                        if (data.reslut == "true") {
+
+                            self.daixuantis = data.tms;
+                            self.$setState();
+                        }
+                        else {
+
+                        }
+                    },
+                    error: function () {
+
+                        app.toast.create({
+                            text: '获取题目失败',
+                            closeTimeout: 3000,
+                            position: 'center'
+                        }).open();
+                    },
+                    dataType: 'json',
+                    timeout: 10000
+                });//首次获取待选题
+
+
+                $("#qx").change(function () {
+                    if ($(this).prop('checked')) {
+                        $('#dxx input[type="checkbox"]').prop('checked', true);
+                    }
+                    else {
+                        $('#dxx input[type="checkbox"]').prop('checked', false);
+                    }
+                });
+                $("#xiugaiqueren").click(function () {
+                    $('#dxx input[type="checkbox"]').each(function () {
+                        if ($(this).prop('checked')) {
+                            var id = $(this).val();
+                            if (!self.shifoucunzai(self.timus, id)) {
+                                self.timus.push(self.finditem(self.daixuantis, id));
+                            }
+                        }
+                    });
+
+                    self.$setState();
+
+                });
+
+                self.popupA = app.popup.create({
+                    el: $(".demo-popup"),
+                    on: {
+                        open: function () {
+                            $("#qx").prop('checked', false);
+                            $('#dxx input[type="checkbox"]').prop('checked', false);
+
+                        },
+                    }
+                });
+                var z = [];
+                for (var i = 1; i <= 20; i++) {
+                    z.push(i * 10);
+                }
+
+
+                self.pickerA = app.picker.create({
+                    inputEl: '#suijichou',
+                    rotateEffect: true,
+                    cols:
+                        [
+                            {
+                                textAlign: 'center',
+                                values: z,
+                                onChange: function (picker, country) {
+
+                                }
+                            },
+                        ],
+                    renderToolbar: function () {
+                        return '<div class="toolbar">' +
+                            '<div class="toolbar-inner">' +
+                            '<div class="title" style="margin-left:20px">' +
+                            '抽取题量</div>' +
+                            '<div class="right">' +
+                            '<a href="#" class="link toolbar-randomize-link float-right">确定</a>' +
+                            '<a href="#" class="link sheet-close popover-close float-right">取消</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                    },
+                    on: {
+                        open: function (picker) {
+
+                            picker.$el.find('.toolbar-randomize-link').on('click', function () {
+                                app.dialog.preloader('加载中...');
+                                app.request({
+                                    type: 'POST',
+                                    url: 'gettimus',
+                                    data: { sj: 1, sl: picker.value[0], zt: "2" },
+                                    success: function (data) {
+                                        app.dialog.close();
+                                        if (data.reslut == "true") {
+                                            self.timus = data.tms;
+                                            self.$setState();
+                                        }
+                                        else {
+                                            app.toast.create({
+                                                text: '获取题目失败',
+                                                closeTimeout: 3000,
+                                                position: 'center'
+                                            }).open();
+                                        }
+                                    },
+                                    error: function () {
+                                        app.dialog.close();
+                                        app.toast.create({
+                                            text: '获取题目失败',
+                                            closeTimeout: 3000,
+                                            position: 'center'
+                                        }).open();
+                                    },
+                                    dataType: 'json',
+                                    timeout: 10000
+                                });
+                                picker.close();
+                            });//点击确定
+
+                        },
+                    }
+                });
+
+                self.pickerB = app.picker.create({
+                    inputEl: '#demo-picker-dependent',
+                    rotateEffect: true,
+                    formatValue: function (values,vare) {
+                        return vare;
+                    },
+                    cols:
+                        [
+                            {
+                                textAlign: 'left',
+                                values: mingchengzu(self.zhangjie),
+                                displayValues: xianshimingchengzu(self.zhangjie),
+                                onChange: function (picker, country) {
+                                    if (picker.cols[1].replaceValues) {
+                                        var j;
+                                        for (var i = 0; i < self.zhangjie.length; i++) {
+                                            if (country == self.zhangjie[i]._id) {
+                                                j = i
+                                                break;
+                                            }
+                                        }
+                                        picker.cols[1].replaceValues(mingchengzu(self.zhangjie[j]._jies), xianshimingchengzu(self.zhangjie[j]._jies));
+                                    }
+                                }
+                            },
+                            {
+                                values: mingchengzu(self.zhangjie[0]._jies),
+                                displayValues: xianshimingchengzu(self.zhangjie[0]._jies),
+                                width: 160,
+                            },
+                        ],
+
+                    on: {
+                        init: function (picker) {
+                            picker.setValue([self.zhangjie[0]._mingcheng, self.zhangjie[0]._jies[0]._mingcheng]);
+                        },
+                        closed: function (picker) {
+                            
+                            $("#qx").prop('checked', false);
+                            app.dialog.preloader('加载中...');
+                            app.request({
+                                type: 'POST',
+                                url: 'gettimus',
+                                data: { jieid: picker.getValue()[1], zt: "2", sj: 1, ly: self.pickerC.getValue()[0]},
+                                success: function (data) {
+                                    app.dialog.close();
+                                    if (data.reslut == "true") {
+                                        self.daixuantis = [];
+                                        self.$setState();
+                                        self.daixuantis = data.tms;
+                                        self.$setState();
+                                    }
+                                    else {
+
+                                    }
+                                },
+                                error: function () {
+                                    app.dialog.close();
+                                    app.toast.create({
+                                        text: '获取题目失败',
+                                        closeTimeout: 3000,
+                                        position: 'center'
+                                    }).open();
+                                },
+                                dataType: 'json',
+                                timeout: 10000
+                            });
+
+
+                        }
+                    }
+                });
+
+
+                self.pickerC = app.picker.create({
+                    inputEl: '#demo-picker-dependent2',
+                    rotateEffect: true,
+                    formatValue: function (values, vare) {
+                        return vare;
+                    },
+                    cols:
+                        [
+                            {
+                                textAlign: 'center',
+                                displayValues: ['全部', '自建', '雪狐狸'], 
+                                values:['','zijian','xuehuli'],
+                                onChange: function (picker, country) {
+
+                                }
+                            },
+                        ],
+                    renderToolbar: function () {
+                        return '<div class="toolbar">' +
+                            '<div class="toolbar-inner">' +
+                            '<div class="title" style="margin-left:20px">' +
+                            '题目来源</div>' +
+                            '<div class="right">' +
+                            '<a href="#" class="link sheet-close popover-close float-right">确定</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                    },
+                    on: {
+                        init: function (picker) {
+                            picker.setValue(['']);
+                        },
+                        closed: function (picker) {
+                            $("#qx").prop('checked', false);
+                            app.dialog.preloader('加载中...');
+                            app.request({
+                                type: 'POST',
+                                url: 'gettimus',
+                                data: { jieid: self.pickerB.getValue()[1], zt: "2", sj: 1, ly: picker.getValue()[0] },
+                                success: function (data) {
+                                    app.dialog.close();
+                                    if (data.reslut == "true") {
+                                        self.daixuantis = [];
+                                        self.$setState();
+                                        self.daixuantis = data.tms;
+                                        self.$setState();
+                                    }
+                                    else {
+
+                                    }
+                                },
+                                error: function () {
+                                    app.dialog.close();
+                                    app.toast.create({
+                                        text: '获取题目失败',
+                                        closeTimeout: 3000,
+                                        position: 'center'
+                                    }).open();
+                                },
+                                dataType: 'json',
+                                timeout: 10000
+                            });
+
+
+                        }
+                    }
+                });
+                $(".segmented-raised").on("click", "#shoudongchou", function () {
+                    self.popupA.open();
+
+                });
+                $(".segmented-raised").on("click", "#qingkong", function () {
+                    self.timus = [];
+                    self.$setState();
+                });
+
+                $("#queding").on("click", function () {
+                    var shijuanming = $("#shijuanming").val().trim();
+                    var banhaos = $("#banjis").val();
+                    if (shijuanming != "" && banhaos.length > 0 && self.timus.length > 0) {
+                        var timuids = [];
+                        for (var i = 0; i < self.timus.length; i++) {
+                            timuids.push(self.timus[i]._id);
+                        }
+                        app.dialog.preloader('创建中...');
+                        app.request({
+                            type: 'POST',
+                            url: 'fabukaoshiaction',
+                            data: { ksm: shijuanming, bhs: banhaos, tmids: timuids},
+                            success: function (data) {
+                                app.dialog.close()
+                                if (data.reslut == "true") {
+                                    app.router.back("/kaoshiguanli/", {
+                                        reloadCurrent: true,
+                                        ignoreCache: true,
+                                    });
+                                }
+                                else {
+
+                                }
+                            },
+                            error: function () {
+                                app.dialog.close();
+                                app.toast.create({
+                                    text: '创建试卷失败',
+                                    closeTimeout: 3000,
+                                    position: 'center'
+                                }).open();
+                            },
+                            dataType: 'json',
+                            timeout: 100000
+                        });
+
+                    } else {
+                        app.toast.create({
+                            text: '请将信息填写完整',
+                            closeTimeout: 3000,
+                            position: 'center'
+                        }).open();
+                    }
+                });
+
+
+
+            },
+            pageAfterIn: function (e, page) {
+                
+            },
+            pageBeforeIn: function (e, page) {
+               
+            },
+        },
+        methods: {
+
+            onDeleted: function (id) {
+                var self = this;
+
+                this.$app.swipeout.close(this.$app.swipeout.el);
+                for (var i = 0; i < self.timus.length; i++) {
+                    if (id === self.timus[i]._id) {
+                        self.timus.splice(i, 1);
+                        self.$setState();
+                        break;
+                    }
+                }
+            },
+            UnixToDate: function (unixTime, isFull, timeZone) {
+                if (typeof (timeZone) == 'number') {
+                    unixTime = parseInt(unixTime) + parseInt(timeZone) * 60 * 60;
+                }
+                var time = new Date(unixTime * 1000);
+                var ymdhis = "";
+                ymdhis += time.getUTCFullYear() + "-";
+                ymdhis += (time.getUTCMonth() + 1) + "-";
+                ymdhis += time.getUTCDate();
+                if (isFull === true) {
+                    ymdhis += " " + time.getUTCHours() + ":";
+                    ymdhis += time.getUTCMinutes() + ":";
+                    ymdhis += time.getUTCSeconds();
+                }
+                return ymdhis;
+            },
+            shifoucunzai: function (items, id) {
+                var bol = false;
+                for (var i = 0; i < items.length; i++) {
+                    if (id === items[i]._id) {
+                        bol = true;
+                        break;
+                    }
+                }
+                return bol;
+            },
+            finditem: function (items, id) {
+                for (var i = 0; i < items.length; i++) {
+                    if (id === items[i]._id) {
+                        return items[i];
+                    }
+                }
+            }
+
+        }
+    }
+
+</script>
+

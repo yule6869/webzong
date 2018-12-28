@@ -1,0 +1,86 @@
+﻿
+.shijian {
+    color: #787878;
+    float: right;
+}
+
+.xinwenbiaoti {
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 10px;
+}
+
+
+.xwnr {
+}
+
+.xwtp {
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.xwnr p {
+    color: #424141;
+    font-weight: 500;
+    color: #787878;
+    font-size: 16px;
+    text-indent: 2em;
+    line-height: 2em;
+}
+
+.xwtp p img {
+    max-width: 70%;
+    vertical-align: middle
+}
+
+.xwnr p img {
+    max-width: 80%;
+}
+
+#zz a {
+    color: #424141;
+}
+
+    #zz a:link {
+        text-decoration: none;
+    }
+
+.xinwenbiaoti2 {
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 10px;
+}
+
+    .xinwenbiaoti2 a {
+        color: #424141;
+    }
+
+        .xinwenbiaoti2 a:link {
+            text-decoration: none;
+        }
+
+.bee {
+    padding-top: 5px;
+    color: #787878;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+    .bee a {
+        color: #424141;
+    }
+
+        .bee a:link {
+            text-decoration: none;
+        }

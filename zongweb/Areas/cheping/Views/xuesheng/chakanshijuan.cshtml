@@ -1,0 +1,295 @@
+﻿@model chepingxitong.ShiJuan
+@{
+    Layout = null;
+}
+
+<div class="page" data-name="chakanshijuan" data-shijuanid="@Model._id">
+    <div class="panel panel-right panel-reveal">
+        <div class="page">
+            <div class="navbar">
+                <div class="navbar-inner sliding">
+                    <div class="title">Right Panel</div>
+                </div>
+            </div>
+            <div class="page-content">
+                <div class="block">
+                    <p>This is a right side panel. You can close it by clicking outsite or on this link: <a href="#" class="panel-close">close me</a>. You can put here anything, even another isolated view.</p>
+                </div>
+                <div class="block-title">Panel Navigation</div>
+                <div class="list links-list">
+                    <ul>
+                        <li><a href="/panel-right-1/">Right panel page 1</a></li>
+                        <li><a href="/panel-right-2/">Right panel page 2</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar">
+        <div class="navbar-inner sliding">
+            <div class="left">
+                <a href="#" class="link back">
+                    <i class="icon icon-back"></i>
+                    <span class="ios-only">Back</span>
+                </a>
+            </div>
+            <div class="title">@Model._mingcheng</div>
+            @if (Model._zhuangtai == "已完成" || Model._zhuangtai == "未完成")
+            {
+                <div class="right">
+                    <div class="demo-icon-name">排名</div>
+                    <a href="/paiming/?ksid=@Model._kaoshiid&mc=@Model._mingci" class="link">
+                        <i class="f7-icons">sort</i>
+
+                    </a>
+                </div>
+            }
+
+            <div class="subnavbar sheet-open" id="erji" data-sheet=".sheet-modal">
+                <p style="font-size:12px;padding-left:10px;width:50px;">完成度</p>
+                <i class="f7-icons">play_round</i>
+                <div class="subnavbar-inner">
+                    <!-- Subnavbar content, for example tabs buttons -->
+                    <span class="progressbar color-red" id="wanchengdu">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content">
+
+        <div class="swiper-container">
+
+            <div class="swiper-wrapper">
+                @{
+                    if (Model._zhuangtai == "已提交")
+                    {
+                        int i = 1;
+                       
+
+                        foreach (chepingxitong.SJTM item in Model._timus)
+                        {
+                            string  zhuangtaistr;
+                            
+                            if (item._xuanxiangid != "")
+                            {
+                                zhuangtaistr = "yicun";
+                            }
+                            else
+                            {
+                                zhuangtaistr = "weizuo";
+                            }
+                            <div class="swiper-slide" style="align-items:initial;-webkit-align-items:initial;" id="@item._timuid" data-zhuangtai="@zhuangtaistr">
+                                @if (item._danxuanti._tigan._id != "")
+                                {
+                                    <div class="block" style="margin-top:10px;margin-bottom:10px;"><b>【材料】@Html.Raw(item._danxuanti._tigan._tigan)</b></div>
+                                }
+                                <div class="block" style="margin-top:10px;margin-bottom:0px;padding-top:0px;">
+                                    <b>@i、@Html.Raw(item._danxuanti._timu)</b>
+                                </div>
+                               
+                                <div class="list" style="margin-top:0px;">
+                                    <ul>
+                                        @for (int j = 0; j < item._danxuanti._xuanxiangs.Count; j++)
+                                        {
+                                            if (item._xuanxiangid != item._danxuanti._xuanxiangs[j]._id)
+                                            {
+                                                <li>
+                                                    <label class="item-radio item-content">
+                                                        <input type="radio" name="@item._timuid" value="@item._danxuanti._xuanxiangs[j]._id" disabled="disabled" />
+                                                        <i class="icon icon-radio"></i>
+                                                        <div class="item-inner" style="font-size:12px;">
+                                                            @Html.Raw(item._danxuanti._xuanxiangs[j]._xuanxiang)
+                                                        </div>
+
+                                                    </label>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <label class="item-radio item-content">
+                                                        <input type="radio" name="@item._timuid" value="@item._danxuanti._xuanxiangs[j]._id" checked="checked" disabled="disabled" />
+                                                        <i class="icon icon-radio"></i>
+                                                        <div class="item-inner" style="font-size:12px;">
+                                                            @Html.Raw(item._danxuanti._xuanxiangs[j]._xuanxiang)
+                                                        </div>
+
+                                                    </label>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        int i = 1;
+                        foreach (chepingxitong.SJTM item in Model._timus)
+                        {
+                            string  zhuangtaistr;
+                            
+                            if (item._xuanxiangid != "")
+                            {
+                                zhuangtaistr = "yicun";
+                            }
+                            else
+                            {
+                                zhuangtaistr = "weizuo";
+                            }
+                            <div class="swiper-slide" style="align-items:initial;-webkit-align-items:initial;" id="@item._timuid" data-zhuangtai="@zhuangtaistr">
+                                @if (item._danxuanti._tigan._id != "")
+                                {
+                                    <div class="block" style="margin-top:10px;margin-bottom:10px;"><b>【材料】@Html.Raw(item._danxuanti._tigan._tigan)</b></div>
+                                }
+                                <div class="block" style="margin-top:10px;margin-bottom:0px;padding-top:0px;">
+                                    <b>@i、@Html.Raw(item._danxuanti._timu)</b>
+                                </div>
+                                
+                                <div class="list" style="margin-top:0px;">
+                                    <ul>
+                                        @for (int j = 0; j < item._danxuanti._xuanxiangs.Count; j++)
+                                        {
+                                            if (item._xuanxiangid != item._danxuanti._xuanxiangs[j]._id)
+                                            {
+                                                <li>
+                                                    <label class="item-radio item-content">
+                                                        <input type="radio" name="@item._timuid" value="@item._danxuanti._xuanxiangs[j]._id" disabled="disabled" />
+                                                        <i class="icon icon-radio"></i>
+                                                        <div class="item-inner" style="font-size:12px;">
+                                                            @Html.Raw(item._danxuanti._xuanxiangs[j]._xuanxiang)
+                                                        </div>
+
+                                                    </label>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                if (item._danxuanti._xuanxiangs[j]._IsTrue)
+                                                {
+                                                    <li>
+                                                        <label class="item-radio item-content color-green">
+                                                            <input type="radio" name="@item._timuid" value="@item._danxuanti._xuanxiangs[j]._id" checked="checked" />
+                                                            <i class="icon icon-radio"></i>
+                                                            <div class="item-inner" style="font-size:12px;color:green;">
+                                                                @Html.Raw(item._danxuanti._xuanxiangs[j]._xuanxiang)
+                                                                <i class="f7-icons">check</i>
+                                                            </div>
+
+                                                        </label>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <label class="item-radio item-content color-red">
+                                                            <input type="radio" name="@item._timuid" value="@item._danxuanti._xuanxiangs[j]._id" checked="checked" />
+                                                            <i class="icon icon-radio"></i>
+                                                            <div class="item-inner" style="font-size:12px;color:red;">
+                                                                @Html.Raw(item._danxuanti._xuanxiangs[j]._xuanxiang)
+                                                                <i class="f7-icons">close</i>
+                                                            </div>
+
+                                                        </label>
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="block-footer">参考答案：@Html.Raw(item._danxuanti._xuanxiangs.Find((chepingxitong.XuanXiang s) => s._IsTrue == true)._xuanxiang)</div>
+                                @if (item._danxuanti._jiexi.Trim() != "")
+                                {
+                                    <div class="block-footer">解析：@Html.Raw(Html.Raw(item._danxuanti._jiexi))</div>
+                                }
+
+                            </div>
+                            i++;
+                        }
+
+                    }
+
+                }
+            </div>
+        </div>
+
+        <div class="sheet-modal" style="height:70%;">
+            <div class="toolbar">
+                <div class="toolbar-inner">
+                    <div class="left"></div>
+                    <div class="title">题目导航</div>
+                    <div class="right">
+                        <a class="link sheet-close">关闭</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sheet-modal-inner">
+                <div class="page-content">
+                    <div class="row justify-content-left" style="margin-top:15px;">
+                        @{
+                            if (Model._zhuangtai == "已提交")
+                            {
+                                for (int xi = 1; xi <= Model._timus.Count; xi++)
+                                {
+                                    string z = "biaoqian" + Model._timus[xi - 1]._timuid;
+                                    if (Model._timus[xi - 1]._xuanxiangid == "")
+                                    {
+                                        <div class="col-20 text-align-center float-left">
+                                            <div class="chip" id="@z">
+                                                <div class="chip-label">@xi</div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-20 text-align-center float-left">
+                                            <div class="chip color-blue" id="@z">
+                                                <div class="chip-label">@xi</div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int xi = 1; xi <= Model._timus.Count; xi++)
+                                {
+                                    string z = "biaoqian" + Model._timus[xi - 1]._timuid;
+                                    if (Model._timus[xi - 1]._xuanxiangid == "")
+                                    {
+                                        <div class="col-20 text-align-center float-left">
+                                            <div class="chip" id="@z">
+                                                <div class="chip-label">@xi</div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (Model._timus[xi - 1]._xuanxiangid == Model._timus[xi - 1]._danxuanti._xuanxiangs.Find((chepingxitong.XuanXiang s) => s._IsTrue == true)._id)
+                                    {
+                                        <div class="col-20 text-align-center float-left">
+                                            <div class="chip color-green" id="@z">
+                                                <div class="chip-label">@xi</div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-20 text-align-center float-left">
+                                            <div class="chip color-red" id="@z">
+                                                <div class="chip-label">@xi</div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

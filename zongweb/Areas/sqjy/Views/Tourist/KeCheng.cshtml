@@ -1,0 +1,109 @@
+﻿@model sqjymodel.KeCheng
+@{
+    ViewBag.Title = "KeCheng";
+    Layout = "~/Areas/sqjy/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@section Styles{
+
+    <link href="~/Areas/sqjy/css/KeCheng.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/Areas/sqjy/js/ckplayer/ckplayer.min.js"></script>
+    <script src="~/Areas/sqjy/js/KeCheng.js"></script>
+}
+
+<div class="lujing">
+    <ol class="breadcrumb" style="margin:0;font-size:16px;">
+        <li><a href="Index">首页</a></li>
+        <li><a href="KeChengList">@Model._kechengleixing</a></li>
+        <li class="active">@Model._kechengming</li>
+    </ol>
+</div>
+
+<div class="row" id="kcbf" style="background:#f4f4f4;padding-bottom:25px">
+    <div class="col-md-9 col-sm-9 " style="border:1px solid #dbdbdb;background:white;" id="kcbf2">
+        <div class="row">
+            <div class="col-md-12" style="text-align:center;font-size:24px;font-weight:700;padding:15px 0 15px 0">
+                @Model._kechengming
+            </div>
+            <div class="col-md-12" style="text-align:center;border-bottom:1px solid #dbdbdb;font-size:16px;font-weight:600;padding:0 0 15px 0;color:#787878">
+                @Model._zhujiangjiaoshi
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div style='width:100%;padding-top:15px' id='videoo'></div>
+                <p style="display:none;" id="videodizhi">@Model._shipings[0]._shipingdizhi</p>
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:10px">
+            <div class="col-md-12" style="border-left:5px solid #d73240;margin-left:5px;padding:5px 0 5px 0;font-size:17px;font-weight:700;">
+                <span style="padding-left:10px;">相关课程</span>
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:15px" id="kclb">
+            @foreach (sqjymodel.ShiPing item in Model._shipings)
+            {
+                <div class="col-md-3 col-sm-4 col-xs-6" style="padding:5px;" data-dizhi="@item._shipingdizhi">
+                    <div class="beijing">@(Model._shipings.IndexOf(item) + 1)</div>
+                    <div class="han">
+                        <span class="kechengbiaoti">@item._shipingming</span>
+
+                    </div>
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 col-sm-3">
+        <div class="row" style="border:1px solid #dbdbdb;padding:0 10px 0 10px">
+            <div class="col-md-12" style="padding-top:10px;text-align: center;">
+                <img src="@Model._kechengtupian" style="max-width:100%;" />
+            </div>
+            <div class="col-md-12" style="text-align:center;padding:10px 0 10px 0;">
+
+                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>&nbsp;&nbsp;<span class="glyphicon-class" style="font-size:16px;">课程简介</span></button>
+            </div>
+            <div class="col-md-12" style="text-align:center;padding:0 0 10px 0;border-bottom:1px solid #dbdbdb;">
+                <span style="color:#787878;">浏览次数：@Model._liulanliang 次  收藏次数：3次</span>
+
+            </div>
+            <div class="col-md-12" style="padding:10px 0 10px 0;border-bottom:1px solid #dbdbdb;">
+                <p style="color:#787878;font-weight:600;font-size:14px;text-indent: 2em;line-height:2em;">@Model._kechengjianjie</p>
+            </div>
+            <div class="col-md-12" style="text-align:center;padding:10px 0 10px 0">
+                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;&nbsp;<span class="glyphicon-class" style="font-size:16px;">收藏</span></button>
+                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-share" aria-hidden="true"></span>&nbsp;&nbsp;<span class="glyphicon-class" style="font-size:16px;">分享</span></button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-3">
+        <div class="row" style="border:1px solid #dbdbdb;padding:0px 10px 0 10px;margin-top:15px;background:#d73240;">
+            <div class="col-md-12" style="text-align:center;color:white;padding:10px 0 10px 0;font-size:18px">最新热门课程</div>
+
+        </div>
+        <div class="row" style="border-left:1px solid #dbdbdb;border-right:1px solid #dbdbdb;border-bottom:1px solid #dbdbdb;">
+            @foreach (sqjymodel.KeCheng item in ViewBag.kechengs)
+            {
+                <div class="col-md-7 col-sm-10 col-xs-6" style="padding-top:10px;text-align:center;">
+                    <img src="@item._kechengtupian" style="width:100%" />
+                    <p class="bee">
+                        <a href="KeCheng?id=@item._id&cs=b" class="tooltip-test" data-toggle="tooltip" title="@item._kechengming">@item._kechengming</a>
+                    </p>
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>

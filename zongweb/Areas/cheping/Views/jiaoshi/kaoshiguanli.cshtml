@@ -1,0 +1,254 @@
+﻿
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="/jiaoshishouye/" class="link">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">考试管理</div>
+                <div class="right">
+                    <a href="/fabukaoshi/" class="col-33 tablet-15 demo-icon" style="margin-right:10px;">
+                        <div class="demo-icon-icon"><i class="f7-icons">compose</i></div>
+                        <div class="demo-icon-name" style="color:white;">发布考试</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            {{#js_if "this.kaoshis.length===0"}}
+            <div class="block-title" style="text-align:center;">暂无试卷,请发布试卷</div>
+            {{else}}
+            <div class="block-title">左滑查看详情</div>
+            <div class="list media-list" id="kaoshilist">
+                <ul>
+                    {{#each kaoshis}}
+                    <li class="swipeout">
+                        <div class="swipeout-content">
+                            <a href="#" class="item-link item-content">
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title">{{this._mingcheng}}</div>
+                                        <div class="item-after">
+                                            <div class="chip {{#js_if "this._zhuangtai==='未发布'"}}color-red{{else}}{{#js_if "this._zhuangtai==='已发布'"}}color-blue{{else}}color-green{{/js_if}}{{/js_if}}">
+                                                <div class="chip-label">{{this._zhuangtai}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="item-text">
+                                        {{#js_if "this._zhuangtai!='未发布'"}}{{#js_if "this._zhuangtai==='已发布'"}}已提交：{{this._tijiaoshu}}/{{this._shijuanshu}}{{else}}及格率：{{js "((this._jigeshu / this._shijuanshu)*100).toFixed(2)"}}%{{/js_if}}{{/js_if}}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swipeout-actions-right">
+                            {{#js_if "this._zhuangtai==='未发布'"}}
+                            <a href="#" class="color-green" @@click="fabu({{this._id}})">发布</a>
+                            <a href="#" class="color-red" @@click="shanchu({{this._id}})">删除</a>
+                            {{else}}
+                            {{#js_if "this._zhuangtai==='已发布'"}}
+                            <a href="/chakanqingkuang/id/{{this._id}}/mingcheng/{{this._mingcheng}}/" class="color-blue">查看</a>
+                            <a href="#" class="color-orange" @@click="shoujuan({{this._id}})">收卷</a>
+                            <a href="#" class="color-red" @@click="shanchu({{this._id}})">删除</a>
+                            {{else}}
+                            <a href="/ckksqk/id/{{this._id}}/mingcheng/{{this._mingcheng}}/" class="color-green">查看详情</a>
+                            <a href="#" class="color-red" @@click="shanchu({{this._id}})">删除</a>
+                            {{/js_if}}
+                            {{/js_if}}
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{/js_if}}
+
+        </div>
+    </div>
+
+</template>
+<script>
+
+    return {
+        data: function () {
+            return {
+                kaoshis: [],//考试列表数据
+            }
+        },
+        on: {
+            pageInit: function (e, page) {
+                
+
+                
+
+
+            },
+
+            pageBeforeIn: function (e, page) {
+                var self = this;
+                var app = self.$app;
+                var $ = self.$$;
+                app.dialog.preloader('加载中...');
+                app.request({
+                    type: 'POST',
+                    url: 'getkaoshis',
+                    data: {},
+                    success: function (data) {
+                        app.dialog.close();
+                        if (data.reslut == "true") {
+                            self.kaoshis = data.kss;
+                            self.$setState();
+                            
+                        }
+                        else {
+                            app.toast.create({
+                                text: '获取数据失败',
+                                closeTimeout: 3000,
+                                position: 'center'
+                            }).open();
+                        }
+                    },
+                    error: function () {
+                        app.dialog.close();
+                        app.toast.create({
+                            text: '获取数据失败，请检查网络',
+                            closeTimeout: 3000,
+                            position: 'center'
+                        }).open();
+                    },
+                    dataType: 'json',
+                    timeout: 10000
+                });
+
+            },
+        },
+        methods: {
+            shoujuan: function (id) {
+                var self = this;
+
+                app.dialog.confirm('收卷后学生将不能继续答题', '确定收卷？', function () {
+                    app.dialog.preloader('收卷中...');
+                    app.request({
+                        type: 'POST',
+                        url: 'shoujuan',
+                        data: { ksid: id },
+                        success: function (data) {
+                            app.dialog.close();
+                            app.swipeout.close(app.swipeout.el);
+                            if (data.reslut == "true") {
+                                for (var i = 0; i < self.kaoshis.length; i++) {
+                                    if (self.kaoshis[i]._id == data.ks._id) {
+                                        self.kaoshis[i] = data.ks;
+                                        self.$setState();
+                                    }
+                                }
+
+                            }
+                        },
+                        error: function () {
+                            app.dialog.close();
+                            app.swipeout.close(app.swipeout.el);
+                        },
+                        dataType: 'json',
+                        timeout: 30000
+                    });
+                }, function () {
+                    app.swipeout.close(app.swipeout.el);
+                });
+
+            },
+
+            UnixToDate: function (unixTime, isFull, timeZone) {
+                if (typeof (timeZone) == 'number') {
+                    unixTime = parseInt(unixTime) + parseInt(timeZone) * 60 * 60;
+                }
+                var time = new Date(unixTime * 1000);
+                var ymdhis = "";
+                ymdhis += time.getUTCFullYear() + "-";
+                ymdhis += (time.getUTCMonth() + 1) + "-";
+                ymdhis += time.getUTCDate();
+                if (isFull === true) {
+                    ymdhis += " " + time.getUTCHours() + ":";
+                    ymdhis += time.getUTCMinutes() + ":";
+                    ymdhis += time.getUTCSeconds();
+                }
+                return ymdhis;
+            },
+
+            shanchu: function (id) {
+                var self = this;
+                app.dialog.confirm('确定删除本次考试', '确定删除？', function () {
+                    app.dialog.preloader('删除中...');
+                    app.request({
+                        type: 'POST',
+                        url: 'shanchukaoshi',
+                        data: { ksid: id },
+                        success: function (data) {
+                            app.swipeout.close(app.swipeout.el);
+                            app.dialog.close();
+                            if (data.reslut == "true") {
+                                for (var i = 0; i < self.kaoshis.length; i++) {
+                                    if (self.kaoshis[i]._id == id) {
+                                        self.kaoshis.splice(i, 1);
+                                        
+                                        self.$setState();
+                                    }
+                                }
+
+                            }
+                        },
+                        error: function () {
+                            app.dialog.close();
+                            app.swipeout.close(app.swipeout.el);
+                        },
+                        dataType: 'json',
+                        timeout: 10000
+                    });
+                }, function () {
+                    app.swipeout.close(app.swipeout.el);
+                });
+            },
+
+            fabu: function (id) {
+                var self = this;
+                var $ = self.$$;
+                app.dialog.confirm('确定发布试卷', '确定发布？', function () {
+                    app.dialog.preloader('发布中...');
+                    app.request({
+                        type: 'POST',
+                        url: 'fabukaoshi',
+                        data: { ksid: id },
+                        success: function (data) {
+                            app.swipeout.close(app.swipeout.el);
+                            app.dialog.close();
+                            if (data.reslut == "true") {
+                                for (var i = 0; i < self.kaoshis.length; i++) {
+                                    if (self.kaoshis[i]._id == id) {
+                                        self.kaoshis[i]._zhuangtai = "已发布";
+                                        self.kaoshis[i]._fabushijian = data.fbsj;
+                                        self.$setState();
+                                        
+                                    }
+                                }
+
+                            }
+                        },
+                        error: function () {
+                            app.dialog.close();
+                            app.swipeout.close(app.swipeout.el);
+                        },
+                        dataType: 'json',
+                        timeout: 10000
+                    });
+                }, function () {
+                    app.swipeout.close(app.swipeout.el);
+                });
+            },
+
+        }
+    }
+
+</script>

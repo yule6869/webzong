@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ceshi3</title>
+</head>
+<body>
+    
+    <div  contenteditable="true" style="word-wrap:break-word;word-break:break-all;" id="main">
+        fdsf
+    </div>
+    <input type="button" id="btn" value="jiashang" />
+    <script>
+        var btn = document.getElementById('btn');
+        btn.addEventListener('click', function () {
+            //var inputText = document.getElementById('main');
+           
+            //inputText.focus();
+            //inputText.setSelectionRange(0, inputText.value.length);
+            //document.execCommand('insertHTML', false, "<p>fsdfl</p>");
+            document.execCommand('subscript', false);
+            
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,335 @@
+﻿<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">{{kaoshiming}}</div>
+
+            </div>
+        </div>
+        <div class="toolbar tabbar">
+            <div class="toolbar-inner">
+                <a href="#tab-1" class="tab-link tab-link-active">学生情况</a>
+                <a href="#tab-2" class="tab-link">题目情况</a>
+            </div>
+        </div>
+        <div class="tabs-animated-wrap">
+            <div class="tabs">
+                <div id="tab-1" class="page-content tab tab-active">
+                    <div class="list media-list">
+                        <ul id="shijuanlist">
+                            {{#each shijuans}}
+                            <li>
+                                <a href="#" class="item-link item-content" id="{{this.sjid}}">
+                                    <div class="item-media"><img src="{{this.xstx}}" width="60" style="border-radius:70%" /></div>
+
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">{{this.xsxm}}</div>
+                                            <div class="item-after">
+                                                <div class="chip  {{#js_if "this.zql*100<60"}}color-red{{else}}{{#js_if "this.zql*100>=60&&this.zql*100<80"}}color-oring{{else}}color-green{{/js_if}}{{/js_if}}">
+                                                    <div class="chip-label">{{this.mc}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item-subtitle">正确率：{{js "(this.zql*100).toFixed(2)"}}%</div>
+                                        <div class="item-text" style="margin-top:10px;">
+                                            <span data-progress="{{js "(this.zql*100).toFixed(2)"}}" class="progressbar {{#js_if "this.zql*100<60"}}color-red{{else}}{{#js_if "this.zql*100>=60&&this.zql*100<80"}}color-orange{{else}}color-green{{/js_if}}{{/js_if}}"></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            {{/each}}
+
+                        </ul>
+                    </div>
+                </div>
+                <div id="tab-2" class="page-content tab">
+                    <div class="list media-list">
+                        <ul id="timulist">
+                            {{#each timutongjis}}
+                            <li data-timuid="{{this._timu._id}}">
+                                <a href="#" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-text">{{this._timu._timu}}</div>
+                                        </div>
+                                        <div class="item-subtitle">正确率：{{#js_if "this._zuoticishu===0"}}{{this._zuoticishu}}{{else}}{{js "((this._zhengquecishu/this._zuoticishu)*100).toFixed(2)"}}{{/js_if}}%</div>
+                                        <div class="item-text" style="margin-top:10px;">
+                                            {{#js_if "this._zuoticishu===0"}}<span data-progress="0" class="progressbar color-red"></span>{{else}}<span data-progress="{{js "(this._zhengquecishu/this._zuoticishu)*100"}}" class="progressbar {{#js_if "(this._zhengquecishu/this._zuoticishu)*100>=80"}}color-green{{else}}{{#js_if "(this._zhengquecishu/this._zuoticishu)*100<80&&(this._zhengquecishu/this._zuoticishu)*100>=60"}}color-orange{{else}}color-red{{/js_if}}{{/js_if}}"></span>{{/js_if}}
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            {{/each}}
+
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="popup demo-popup">
+            <div class="page">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="title">题目详情</div>
+                        <div class="right">
+                            <a href="#" class="link popup-close">返回</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="page-content">
+                    
+                    {{#js_if "this.dianjidetimu._timu._tigan._id!=''"}}
+                    <div class="block-header" style="margin-top:15px;font-size:24px;">题干</div>
+                    <div class="block block-strong" style="margin-bottom:5px;font-size:24px;">
+                        {{dianjidetimu._timu._tigan._tigan}}
+                    </div>
+                    {{/js_if}}
+                    <div class="block-header" style="margin-top:15px;font-size:24px;">题目</div>
+                    <div class="block block-strong" style="margin-bottom:5px;font-size:24px;">
+                        {{dianjidetimu._timu._timu}}
+                    </div>
+                    <div class="block-header" style="margin-top:15px;font-size:24px;">选项</div>
+                    <div class="block block-strong" style="margin-bottom:5px;font-size:24px;">
+                        {{#each dianjidetimu._timu._xuanxiangs}}
+                        <p>{{this._xuanxiang}}</p>
+                        {{/each}}
+                    </div>
+                    <div class="block-header" style="margin-top:15px;font-size:24px;">答案</div>
+                    <div class="block block-strong" style="margin-bottom:5px;font-size:24px;">
+                        {{#each dianjidetimu._timu._xuanxiangs}}
+                        {{#js_if "this._IsTrue"}}
+                        {{this._xuanxiang}}
+                        {{/js_if}}
+                        {{/each}}
+                    </div>
+                    <div class="block-header" style="margin-top:15px;font-size:24px;">解析</div>
+                    <div class="block block-strong" style="margin-bottom:5px;font-size:24px;">
+                        {{dianjidetimu._timu._jiexi}}
+                    </div>
+                    <div class="block-header" style="margin-top:15px;font-size:24px;">正确率</div>
+                    <div class="block block-strong" style="margin-bottom:5px;">
+                        <div class="row" id="zhengquelv">
+                            <div class="col">
+                                <div class="block-title" style="margin-top:10px;">本次正确率</div>
+                                <div class="progressbar {{#js_if "(this.dianjidetimu._zhengquecishu/this.dianjidetimu._zuoticishu)*100>=80"}}color-green{{else}}{{#js_if "(this.dianjidetimu._zhengquecishu/this.dianjidetimu._zuoticishu)*100<80&&(this.dianjidetimu._zhengquecishu/this.dianjidetimu._zuoticishu)*100>=60"}}color-orange{{else}}color-red{{/js_if}}{{/js_if}}" data-progress="{{#js_if "this.dianjidetimu._zuoticishu===0"}}0{{else}}{{js "(this.dianjidetimu._zhengquecishu/this.dianjidetimu._zuoticishu)*100"}}{{/js_if}}"></div>
+                            </div>
+                            <div class="col">
+                                <div class="block-title" style="margin-top:10px;">平均正确率</div>
+                                <div class="progressbar {{#js_if "(this.dianjidetimu._timu._zhengquecishu/this.dianjidetimu._timu._zuoticishu)*100>=80"}}color-green{{else}}{{#js_if "(this.dianjidetimu._timu._zhengquecishu/this.dianjidetimu._timu._zuoticishu)*100<80&&(this.dianjidetimu._timu._zhengquecishu/this.dianjidetimu._timu._zuoticishu)*100>=60"}}color-orange{{else}}color-red{{/js_if}}{{/js_if}}" data-progress="{{#js_if "this.dianjidetimu._timu._zuoticishu===0"}}0{{else}}{{js "(this.dianjidetimu._timu._zhengquecishu/this.dianjidetimu._timu._zuoticishu)*100"}}{{/js_if}}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-header" style="margin-top:15px;font-size:24px;">详情</div>
+                    <div class="block block-strong" style="margin-bottom:5px;">
+                        <div id="main" style="width:100%;height:260px;">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>
+<script>
+    function fandata(date) {
+        var zhang = [];
+        for (var i = 0; i < date.length; i++) {
+            zhang.push(date[i]._xuanzecishu);
+        }
+        return zhang;
+    }
+    return {
+        data: function () {
+            return {
+                id:"",//考试id
+                kaoshiming: "",//考试名称
+                shijuans: [],//试卷s
+                timutongjis: [],//题目统计s
+                popupA: null,
+                dianjidetimu: {
+                    _timu: {
+                        _tigan: {}
+                    },
+                    _zuoticishu: 0,
+                    _zhengquecishu: 0,
+                    _ksxxs:[]
+                },//点击的题目
+                option :{
+
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: [
+                        {
+                            type: 'category',
+                            data: ['A', 'B', 'C', 'D', 'E'],
+                            axisTick: {
+                                alignWithLabel: true
+                            }
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    series: [
+                        {
+                            name: '选择次数',
+                            type: 'bar',
+                            barWidth: '60%',
+                            data: [0, 0, 200, 334, 390],
+                            itemStyle: {
+                                normal: {
+                                    color: function (params) {
+                                        var colorList = ['#FF0000', '#00FF00', '#FF0000', '#FF0000', '#FF0000'];
+                                        return colorList[params.dataIndex]
+                                    }
+                                },
+                            },
+                        }
+                    ]
+                },//图表参数
+                tubiao:null,
+            }
+        },
+        on: {
+            pageInit: function (e, page) {
+                var self = this;
+                var app = self.$app;
+                var $ = self.$$;
+
+                //$("#kaoshilist .item-subtitle").each(function () {
+                //    $(this).text(self.UnixToDate($(this).text(), false, 8));
+                //});
+                self.popupA = app.popup.create({ el: $(".demo-popup") });
+                $("#timulist").on("click", "li", function () {
+
+                    var timuid = $(this).data("timuid");
+                    for (var i = 0; i < self.timutongjis.length; i++) {
+                        if (self.timutongjis[i]._timu._id == timuid) {
+
+                            self.dianjidetimu = self.timutongjis[i];
+                            self.$setState({
+                                dianjidetimu: self.dianjidetimu,
+                            });
+                            $("#zhengquelv .progressbar").each(function () {
+                                var du = $(this).data("progress");
+                                app.progressbar.set($(this), du);
+                            });
+                            self.option.series[0].data = fandata(self.dianjidetimu._ksxxs);
+                            var colorlist = ['#FF0000', '#FF0000', '#FF0000', '#FF0000', '#FF0000'];
+                           
+                            for (var i = 0; i < self.dianjidetimu._timu._xuanxiangs.length; i++) {
+                                if (self.dianjidetimu._timu._xuanxiangs[i]._IsTrue) {
+                                    colorlist[i] = '#00FF00';
+                                    break;
+                                }
+                            }
+                            for (var i = 0; i < self.dianjidetimu.length; i++) {
+                                if (zzt[i] === self.dianjidetimu._timu._daan) {
+                                    colorlist[i] = '#00FF00';
+                                    break;
+                                }
+                            }
+                            self.option.series[0].itemStyle.normal.color = function (params) {
+
+                                return colorlist[params.dataIndex];
+                            }
+                            self.popupA.open();
+                            self.tubiao = echarts.init(document.getElementById('main'));
+                            self.tubiao.setOption(self.option);
+                            break;
+                        }
+                    }
+                });//点击题目
+
+
+            },
+
+            pageBeforeIn: function (e, page) {
+                var self = this;
+                var app = self.$app;
+                var $ = self.$$;
+                self.id = self.$route.params.id;
+                self.kaoshiming = self.$route.params.mingcheng;
+                app.dialog.preloader('加载中...');
+                app.request({
+                    type: 'POST',
+                    url: 'getshijuans?cs=max',
+                    data: { id:self.id },
+                    success: function (data) {
+                        app.dialog.close();
+                        if (data.reslut == "true") {
+
+                            self.shijuans = data.shujus;
+                            self.shijuans.sort(function (a, b) {
+                                return a.mc - b.mc;
+                            });
+                            self.timutongjis = data.timutongjis;
+                            console.log(data.timutongjis);
+                            self.$setState();
+                            $("li").each(function () {
+                                var du = $(this).find('span').data("progress");
+                                app.progressbar.set($(this).find('span'),du);
+                            });
+
+                        }
+                    },
+                    error: function () {
+                        app.dialog.close();
+                    },
+                    dataType: 'json',
+                    timeout: 30000
+                });
+
+
+            },
+        },
+        methods: {
+
+
+            UnixToDate: function (unixTime, isFull, timeZone) {
+                if (typeof (timeZone) == 'number') {
+                    unixTime = parseInt(unixTime) + parseInt(timeZone) * 60 * 60;
+                }
+                var time = new Date(unixTime * 1000);
+                var ymdhis = "";
+                ymdhis += time.getUTCFullYear() + "-";
+                ymdhis += (time.getUTCMonth() + 1) + "-";
+                ymdhis += time.getUTCDate();
+                if (isFull === true) {
+                    ymdhis += " " + time.getUTCHours() + ":";
+                    ymdhis += time.getUTCMinutes() + ":";
+                    ymdhis += time.getUTCSeconds();
+                }
+                return ymdhis;
+            },
+
+        }
+    }
+
+</script>
+
+

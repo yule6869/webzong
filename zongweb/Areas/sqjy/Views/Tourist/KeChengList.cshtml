@@ -1,0 +1,57 @@
+﻿@model List<sqjymodel.KeCheng>
+@{
+    ViewBag.Title = "KeChengList";
+    Layout = "~/Areas/sqjy/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@section Styles{
+
+    <link href="~/Areas/sqjy/css/KeChengList.css" rel="stylesheet" />
+}
+
+@section scripts{
+
+    <script src="~/Areas/sqjy/js/KeChengList.js"></script>
+}
+
+<p id="leibiee" style="display:none;">全部</p>
+<div class="lujing">
+    <ol class="breadcrumb" style="margin:0;font-size:16px;">
+        <li><a href="Index">首页</a></li>
+        <li class="active">课程列表</li>
+    </ol>
+</div>
+
+<div class="touxia" style="background:#f4f4f4">
+    <div class="row" style="background:white;border:1px solid #dbdbdb;font-size:16px;">
+        <div class="col-md-1 col-xs-2" style="text-align:center;padding:8px 0 8px 0">
+            类别：
+        </div>
+        <div class="col-md-11 col-xs-10" style="border-left:1px solid #dbdbdb;">
+            <div class="row" id="leibie">
+                <div class="col-md-2 col-sm-2 col-xs-4" style="text-align:center;padding-top:8px;padding-bottom:5px"><span style="padding:5px;font-size:16px;cursor:pointer;">全部</span></div>
+                <div class="col-md-2 col-sm-2 col-xs-4" style="text-align:center;padding-top:8px;padding-bottom:5px"><span style="padding:5px;font-size:15px;cursor:pointer;">社区生活</span></div>
+                <div class="col-md-2 col-sm-2 col-xs-4" style="text-align:center;padding-top:8px;padding-bottom:5px"><span style="padding:5px;font-size:15px;cursor:pointer;">科学探秘</span></div>
+                <div class="col-md-2 col-sm-2 col-xs-4" style="text-align:center;padding-top:8px;padding-bottom:5px"><span style="padding:5px;font-size:15px;cursor:pointer;">文史天地</span></div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="touxia row" style="background:#f4f4f4;padding-top:10px;" id="yy">
+    @foreach (sqjymodel.KeCheng item in Model)
+    {
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4" style="padding-left:5px;padding-right:5px;margin-bottom:10px" data-leixing="@item._kechengleixing">
+            <a href="KeCheng?id=@item._id&cs=b"><img src='@item._kechengtupian' style="width:100%;height:106.6px;" /></a>
+            <div class="han">
+                <span class="kechengbiaoti">@item._kechengming</span>
+                <span class="glyphicon glyphicon-eye-open kechengtubiao" aria-hidden="true"></span><span class="kechengshuzhi">@item._liulanliang</span>
+
+            </div>
+
+        </div>
+    }
+
+</div>

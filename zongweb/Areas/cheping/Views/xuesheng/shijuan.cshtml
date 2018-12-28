@@ -1,0 +1,145 @@
+﻿@model chepingxitong.ShiJuan
+@{
+    
+
+    Layout = null;
+}
+
+
+<div class="page" data-name="shijuan" data-shijuanid="@Model._id">
+
+    <div class="navbar">
+        <div class="navbar-inner sliding">
+
+            <div class="title">@Model._mingcheng</div>
+            <div class="right">
+                <a click="openConfirm" class="link" id="tijiao">
+                    <i class="f7-icons">check_round</i>
+                    <span class="demo-icon-name">提交</span>
+                </a>
+            </div>
+            <div class="subnavbar sheet-open" id="erji" data-sheet=".sheet-modal">
+                <p style="font-size:12px;padding-left:10px;width:50px;">完成度</p>
+                <i class="f7-icons">play_round</i>
+                <div class="subnavbar-inner">
+                    <!-- Subnavbar content, for example tabs buttons -->
+                    <span class="progressbar color-red" id="wanchengdu">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content">
+
+        <div class="swiper-container">
+
+            <div class="swiper-wrapper">
+
+                @{
+                    int i = 1;
+                   
+
+                    foreach (chepingxitong.SJTM item in Model._timus)
+                    {
+                        string  zhuangtaistr;
+                        
+                        if (item._xuanxiangid != "")
+                        {
+                            zhuangtaistr = "yicun";
+                        }
+                        else
+                        {
+                            zhuangtaistr = "weizuo";
+                        }
+                        <div class="swiper-slide" style="align-items:initial;-webkit-align-items:initial;" id="@item._timuid" data-zhuangtai="@zhuangtaistr">
+                            @if (item._danxuanti._tigan._id != "")
+                            {
+                                <div class="block" style="margin-top:10px;margin-bottom:10px;"><b>【材料】@Html.Raw(item._danxuanti._tigan._tigan)</b></div>
+                            }
+                            <div class="block" style="margin-top:10px;margin-bottom:0px;padding-top:0px;">
+                                <b>@i、@Html.Raw(item._danxuanti._timu)</b>
+                            </div>
+                            
+                            <div class="list" style="margin-top:0px;">
+                                <ul>
+                                    @for (int j = 0; j < item._danxuanti._xuanxiangs.Count; j++)
+                                    {
+                                        if (item._xuanxiangid != item._danxuanti._xuanxiangs[j]._id)
+                                        {
+                                            <li>
+                                                <label class="item-radio item-content">
+                                                    <input type="radio" name="@item._timuid" value="@item._danxuanti._xuanxiangs[j]._id" />
+                                                    <i class="icon icon-radio"></i>
+                                                    <div class="item-inner" style="font-size:12px;justify-content:flex-start;-webkit-justify-content:flex-start;">
+                                                        @Html.Raw(item._danxuanti._xuanxiangs[j]._xuanxiang)
+                                                    </div>
+
+                                                </label>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <label class="item-radio item-content">
+                                                    <input type="radio" name="@item._timuid" value="@item._danxuanti._xuanxiangs[j]._id" checked="checked" />
+                                                    <i class="icon icon-radio"></i>
+                                                    <div class="item-inner" style="font-size:12px;justify-content:flex-start;-webkit-justify-content:flex-start;">
+                                                        @Html.Raw(item._danxuanti._xuanxiangs[j]._xuanxiang)
+                                                    </div>
+
+                                                </label>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        i++;
+                    }
+
+                }
+            </div>
+        </div>
+
+        <div class="sheet-modal" style="height:70%;">
+            <div class="toolbar">
+                <div class="toolbar-inner">
+                    <div class="left"></div>
+                    <div class="title">题目导航</div>
+                    <div class="right">
+                        <a class="link sheet-close">关闭</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sheet-modal-inner">
+                <div class="page-content">
+                    <div class="row justify-content-left" style="margin-top:15px;">
+                        @for (int xi = 1; xi <= Model._timus.Count; xi++)
+                        {
+                            string z = "biaoqian" + Model._timus[xi - 1]._timuid;
+                            if (Model._timus[xi - 1]._xuanxiangid == "")
+                            {
+                                <div class="col-20 text-align-center float-left">
+                                    <div class="chip" id="@z">
+                                        <div class="chip-label">@xi</div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-20 text-align-center float-left">
+                                    <div class="chip color-blue" id="@z">
+                                        <div class="chip-label">@xi</div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
