@@ -20,14 +20,39 @@ namespace webzong2.Areas.cheping.Controllers
         {
             if(Session["XUESHENG"]==null)
             {
+             
                 XueSheng xs = new XueSheng();
                 xs.shilihua("2019010001");
                 Session["XUESHENG"] = xs;
-                return RedirectToAction("shouye");
+                return RedirectToAction("shouye2");
             }
             else
             {
-                return RedirectToAction("shouye");
+                return RedirectToAction("shouye2");
+            }
+        }
+
+        public ActionResult shouye2()
+        {
+            if (Session["XUESHENG"] == null)
+            {
+                return RedirectToAction("/rukou");
+            }
+            else
+            {
+                
+                XueSheng xuesheng = (XueSheng)Session["XUESHENG"];
+                ViewData.Model = xuesheng;
+                string mystr = ConfigurationManager.AppSettings["ConnectionString4"].ToString();
+                SqlConnection con = new SqlConnection(mystr);
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                con.Open();
+                cmd.CommandText = "select count(*) from timu where zhuangtai=2";
+                ViewBag.zongtiliang = (int)cmd.ExecuteScalar();
+                con.Close();
+                cmd.Dispose();
+                return View();
             }
         }
 

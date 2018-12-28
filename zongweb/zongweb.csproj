@@ -1221,6 +1221,7 @@
     <Content Include="Areas\cheping\Views\jiaoshi\kaoshiguanli.cshtml" />
     <Content Include="Areas\cheping\Views\xuesheng\bangding.cshtml" />
     <Content Include="Areas\cheping\Views\jiaoshi\Login.cshtml" />
+    <Content Include="Areas\cheping\Views\xuesheng\shouye2.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\chartist\chartist-plugin.js" />
@@ -1331,7 +1332,6 @@
     <Folder Include="Areas\cheping\xueshengshoujiduan\js\" />
     <Folder Include="Areas\cheping\xueshengshoujiduan\pages\" />
     <Folder Include="cheping\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
